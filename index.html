@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#0F172A" />
+  <title>Life Tracker</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- Google Fonts & Material Symbols -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+<body>
+  <div id="app">
+    <!-- Top Header Bar -->
+    <header class="app-header glass">
+      <div class="user-profile">
+        <div class="avatar" id="user-avatar">U</div>
+        <div class="user-info">
+          <h2 id="greeting">শুভ দিন</h2>
+          <p id="current-date">তারিখ লোড হচ্ছে...</p>
+        </div>
+      </div>
+      <button class="icon-btn" id="btn-sync" title="Sync Data">
+        <span class="material-symbols-rounded">sync</span>
+      </button>
+    </header>
+
+    <!-- Main Content Views -->
+    <main id="main-content" class="content-container">
+      
+      <!-- 1. DASHBOARD VIEW -->
+      <section id="section-dashboard" class="view-section active">
+        <!-- Motivational Quote -->
+        <div class="card glass quote-card">
+          <span class="material-symbols-rounded quote-icon">format_quote</span>
+          <p id="quote-text">"প্রতিদিনের ছোট ছোট উন্নতি সময়ের সাথে বড় পরিবর্তনে রূপ নেয়।"</p>
+          <small id="quote-author">- রবিন শর্মা</small>
+        </div>
+
+        <!-- Quick Metrics Overview Grid -->
+        <div class="metrics-grid">
+          <div class="card glass metric-card">
+            <span class="material-symbols-rounded metric-icon water">water_drop</span>
+            <div>
+              <h3>পানি</h3>
+              <p id="dash-water-val">0 / 2.0 L</p>
+            </div>
+          </div>
+          <div class="card glass metric-card">
+            <span class="material-symbols-rounded metric-icon prayer">mosque</span>
+            <div>
+              <h3>নামাজ</h3>
+              <p id="dash-prayer-val">0 / 5</p>
+            </div>
+          </div>
+          <div class="card glass metric-card">
+            <span class="material-symbols-rounded metric-icon sleep">bedtime</span>
+            <div>
+              <h3>ঘুম</h3>
+              <p id="dash-sleep-val">0.0 ঘণ্টা</p>
+            </div>
+          </div>
+          <div class="card glass metric-card">
+            <span class="material-symbols-rounded metric-icon study">menu_book</span>
+            <div>
+              <h3>পড়াশোনা</h3>
+              <p id="dash-study-val">0.0 ঘণ্টা</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Today's Task List Summary -->
+        <div class="card glass tasks-widget">
+          <div class="widget-header">
+            <h3>আজকের টাস্ক</h3>
+            <span class="badge" id="task-badge-count">0টি বাকি</span>
+          </div>
+          <ul id="dashboard-task-list" class="item-list">
+            <li class="empty-state">আজকের কোনো টাস্ক নেই!</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 2. TASKS VIEW -->
+      <section id="section-tasks" class="view-section">
+        <div class="section-header">
+          <h2>টাস্ক ম্যানেজার</h2>
+          <button class="primary-btn" id="btn-open-task-modal">
+            <span class="material-symbols-rounded">add</span> নতুন টাস্ক
+          </button>
+        </div>
+        <ul id="full-task-list" class="item-list">
+          <li class="empty-state">কোনো টাস্ক যোগ করা হয়নি।</li>
+        </ul>
+      </section>
+
+      <!-- 3. HABITS VIEW -->
+      <section id="section-habits" class="view-section">
+        <div class="section-header">
+          <h2>অভ্যাস ট্র্যাকার</h2>
+        </div>
+        <div class="card glass">
+          <h3>দৈনিক ৫ ওয়াক্ত নামাজ</h3>
+          <div class="prayer-checklist" id="prayer-checklist">
+            <label class="check-item"><input type="checkbox" data-prayer="fajr"> ফজর</label>
+            <label class="check-item"><input type="checkbox" data-prayer="dhuhr"> জোহর</label>
+            <label class="check-item"><input type="checkbox" data-prayer="asr"> আসর</label>
+            <label class="check-item"><input type="checkbox" data-prayer="maghrib"> মাগরিব</label>
+            <label class="check-item"><input type="checkbox" data-prayer="isha"> এশা</label>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. TRACKERS VIEW (Water, Sleep, Study) -->
+      <section id="section-trackers" class="view-section">
+        <div class="section-header">
+          <h2>স্বাস্থ্য ও পড়াশোনা ট্র্যাকার</h2>
+        </div>
+        <!-- Water Tracker Card -->
+        <div class="card glass">
+          <div class="tracker-row">
+            <div>
+              <h3>পানি খাওয়ার পরিমাণ</h3>
+              <p id="tracker-water-text">0 / 2000 ml</p>
+            </div>
+            <button class="action-btn" id="btn-add-water">+250 ml</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. PROFILE & SETTINGS VIEW -->
+      <section id="section-profile" class="view-section">
+        <div class="section-header">
+          <h2>প্রোফাইল ও সেটিন্স</h2>
+        </div>
+        <div class="card glass profile-card">
+          <p>স্ট্যাটাস: <strong id="auth-status-text">Anonymous User</strong></p>
+          <button class="danger-btn" id="btn-reset-data">ডেটা রিসেট করুন</button>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Modal Form for Adding Tasks -->
+    <div id="task-modal" class="modal-overlay hidden">
+      <div class="modal-content glass">
+        <h3>নতুন টাস্ক যোগ করুন</h3>
+        <form id="task-form">
+          <input type="text" id="task-title" placeholder="টাস্কের নাম" required />
+          <div class="form-row">
+            <input type="time" id="task-time" />
+            <select id="task-priority">
+              <option value="Low">কম গুরুত্বপূর্ণ</option>
+              <option value="Medium" selected>সাধারণ</option>
+              <option value="High">জরুরি</option>
+            </select>
+          </div>
+          <div class="modal-actions">
+            <button type="button" class="secondary-btn" id="btn-close-modal">বাতিল</button>
+            <button type="submit" class="primary-btn">সংরক্ষণ করুন</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="bottom-nav glass">
+      <button class="nav-btn active" data-target="section-dashboard">
+        <span class="material-symbols-rounded">dashboard</span>
+        <span>হোম</span>
+      </button>
+      <button class="nav-btn" data-target="section-tasks">
+        <span class="material-symbols-rounded">check_circle</span>
+        <span>টাস্ক</span>
+      </button>
+      <button class="nav-btn" data-target="section-habits">
+        <span class="material-symbols-rounded">dataset_linked</span>
+        <span>অভ্যাস</span>
+      </button>
+      <button class="nav-btn" data-target="section-trackers">
+        <span class="material-symbols-rounded">analytics</span>
+        <span>ট্র্যাকার</span>
+      </button>
+      <button class="nav-btn" data-target="section-profile">
+        <span class="material-symbols-rounded">person</span>
+        <span>প্রোফাইল</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- Firebase Modular Web v9 SDKs (Compatible Standalone Build) -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+  <!-- Application Logic Code -->
+  <script src="js/app.js"></script>
+</body>
+</html>
