@@ -1,1 +1,2 @@
-# life-tracker
+# Life Tracker
+Starter project.
