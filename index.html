@@ -1,1 +1,256 @@
-<!DOCTYPE html><html lang="bn"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Life Tracker</title><link rel="manifest" href="manifest.json"><link rel="stylesheet" href="css/style.css"></head><body><div class="container"><h1>🌿 Life Tracker</h1><input id="taskInput" placeholder="নতুন টাস্ক"><button onclick="addTask()">Add</button><ul id="list"></ul></div><script src="js/app.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#0F172A" />
+  <title>Life Tracker</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+<body>
+  <div id="app">
+    <!-- Top Header -->
+    <header class="app-header glass">
+      <div class="user-profile">
+        <div class="avatar" id="user-avatar">MS</div>
+        <div class="user-info">
+          <h2 id="greeting">Good Morning, Md Shade</h2>
+          <p id="current-datetime">Loading date & time...</p>
+        </div>
+      </div>
+      <button class="icon-btn" id="btn-notifications" title="Notifications">
+        <span class="material-symbols-rounded">notifications</span>
+      </button>
+    </header>
+
+    <!-- Main Content Container -->
+    <main id="main-content" class="content-container">
+      
+      <!-- 1. DASHBOARD VIEW -->
+      <section id="section-dashboard" class="view-section active">
+        
+        <!-- Overall Progress Bar -->
+        <div class="card glass overall-progress-card">
+          <div class="progress-info">
+            <div>
+              <h3>Daily Progress</h3>
+              <p id="progress-percent-text">0% Completed Today</p>
+            </div>
+            <div class="badge" id="day-streak-badge">🔥 1 Day Streak</div>
+          </div>
+          <div class="progress-bar-container">
+            <div class="progress-bar-fill" id="overall-progress-bar" style="width: 0%;"></div>
+          </div>
+        </div>
+
+        <!-- Motivational Quote -->
+        <div class="card glass quote-card">
+          <span class="material-symbols-rounded quote-icon">format_quote</span>
+          <p id="quote-text">"Small daily improvements over time lead to stunning results."</p>
+          <small id="quote-author">- Robin Sharma</small>
+        </div>
+
+        <!-- Metric Summary Grid -->
+        <div class="metrics-grid">
+          <div class="card glass metric-card">
+            <span class="material-symbols-rounded metric-icon water">water_drop</span>
+            <div>
+              <h3>Water Intake</h3>
+              <p id="dash-water-val">0 / 2.0 L</p>
+            </div>
+          </div>
+          <div class="card glass metric-card">
+            <span class="material-symbols-rounded metric-icon prayer">mosque</span>
+            <div>
+              <h3>Prayers</h3>
+              <p id="dash-prayer-val">0 / 5</p>
+            </div>
+          </div>
+          <div class="card glass metric-card">
+            <span class="material-symbols-rounded metric-icon sleep">bedtime</span>
+            <div>
+              <h3>Sleep Log</h3>
+              <p id="dash-sleep-val">0.0 hrs</p>
+            </div>
+          </div>
+          <div class="card glass metric-card">
+            <span class="material-symbols-rounded metric-icon study">menu_book</span>
+            <div>
+              <h3>Study Log</h3>
+              <p id="dash-study-val">0.0 hrs</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Today's Tasks Summary -->
+        <div class="card glass tasks-widget">
+          <div class="widget-header">
+            <h3>Today's Tasks</h3>
+            <span class="badge" id="task-badge-count">0 Remaining</span>
+          </div>
+          <ul id="dashboard-task-list" class="item-list">
+            <li class="empty-state">No tasks for today. Tap '+' to create one!</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 2. TASKS & CALENDAR VIEW -->
+      <section id="section-tasks" class="view-section">
+        <div class="section-header">
+          <h2>Task Manager & Calendar</h2>
+        </div>
+        <!-- Minimal Calendar Widget -->
+        <div class="card glass calendar-widget">
+          <div class="calendar-header">
+            <span id="calendar-month-year">August 2026</span>
+          </div>
+          <div class="calendar-days-grid" id="calendar-days">
+            <!-- Dynamic Calendar Days rendered via JS -->
+          </div>
+        </div>
+
+        <ul id="full-task-list" class="item-list">
+          <li class="empty-state">No tasks added yet.</li>
+        </ul>
+      </section>
+
+      <!-- 3. HABITS & PRAYER TRACKER VIEW -->
+      <section id="section-habits" class="view-section">
+        <div class="section-header">
+          <h2>Habit & Prayer Tracker</h2>
+        </div>
+        <!-- Prayer Tracker Card -->
+        <div class="card glass">
+          <h3>🕌 Daily 5 Prayers</h3>
+          <div class="prayer-checklist" id="prayer-checklist">
+            <label class="check-item"><input type="checkbox" data-prayer="fajr"> Fajr (ফজর)</label>
+            <label class="check-item"><input type="checkbox" data-prayer="dhuhr"> Dhuhr (জোহর)</label>
+            <label class="check-item"><input type="checkbox" data-prayer="asr"> Asr (আসর)</label>
+            <label class="check-item"><input type="checkbox" data-prayer="maghrib"> Maghrib (মাগরিব)</label>
+            <label class="check-item"><input type="checkbox" data-prayer="isha"> Isha (এশা)</label>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. HEALTH & STUDY TRACKERS VIEW -->
+      <section id="section-trackers" class="view-section">
+        <div class="section-header">
+          <h2>Health & Study Trackers</h2>
+        </div>
+        <!-- Water Counter -->
+        <div class="card glass">
+          <div class="tracker-row">
+            <div>
+              <h3>💧 Water Tracker</h3>
+              <p id="tracker-water-text">0 / 2000 ml</p>
+            </div>
+            <button class="action-btn" id="btn-add-water">+250 ml Glass</button>
+          </div>
+        </div>
+
+        <!-- Sleep Log Card -->
+        <div class="card glass">
+          <h3>😴 Sleep Tracker</h3>
+          <div class="form-row margin-top">
+            <input type="number" id="input-sleep-hours" placeholder="Hours (e.g. 7.5)" step="0.5" />
+            <button class="primary-btn" id="btn-save-sleep">Save Sleep</button>
+          </div>
+        </div>
+
+        <!-- Study Tracker Card -->
+        <div class="card glass">
+          <h3>📚 Study Tracker</h3>
+          <div class="form-row margin-top">
+            <input type="number" id="input-study-hours" placeholder="Hours studied" step="0.5" />
+            <button class="primary-btn" id="btn-save-study">Save Study</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. REPORTS & SETTINGS VIEW -->
+      <section id="section-reports" class="view-section">
+        <div class="section-header">
+          <h2>Reports & Settings</h2>
+        </div>
+        <div class="card glass">
+          <h3>📈 Weekly Productivity Report</h3>
+          <p class="text-muted margin-top">Goal Completion Rate: <strong>85%</strong></p>
+          <p class="text-muted">Avg. Water Intake: <strong>2.1 L / day</strong></p>
+        </div>
+        <div class="card glass">
+          <h3>⚙️ App Settings</h3>
+          <div class="setting-item">
+            <span>Push Notifications</span>
+            <button class="action-btn" id="btn-toggle-notif">Enable</button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Floating Action Add Button -->
+    <button class="fab-btn" id="btn-fab-add" title="Add Task">
+      <span class="material-symbols-rounded">add</span>
+    </button>
+
+    <!-- Modal Form for Tasks -->
+    <div id="task-modal" class="modal-overlay hidden">
+      <div class="modal-content glass">
+        <h3>Create New Task</h3>
+        <form id="task-form">
+          <input type="text" id="task-title" placeholder="Task Title..." required />
+          <div class="form-row">
+            <input type="time" id="task-time" />
+            <select id="task-priority">
+              <option value="Low">Low Priority</option>
+              <option value="Medium" selected>Medium Priority</option>
+              <option value="High">High Priority</option>
+            </select>
+          </div>
+          <div class="modal-actions">
+            <button type="button" class="secondary-btn" id="btn-close-modal">Cancel</button>
+            <button type="submit" class="primary-btn">Add Task</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="bottom-nav glass">
+      <button class="nav-btn active" data-target="section-dashboard">
+        <span class="material-symbols-rounded">dashboard</span>
+        <span>Home</span>
+      </button>
+      <button class="nav-btn" data-target="section-tasks">
+        <span class="material-symbols-rounded">check_circle</span>
+        <span>Tasks</span>
+      </button>
+      <button class="nav-btn" data-target="section-habits">
+        <span class="material-symbols-rounded">dataset_linked</span>
+        <span>Habits</span>
+      </button>
+      <button class="nav-btn" data-target="section-trackers">
+        <span class="material-symbols-rounded">analytics</span>
+        <span>Trackers</span>
+      </button>
+      <button class="nav-btn" data-target="section-reports">
+        <span class="material-symbols-rounded">settings</span>
+        <span>Settings</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- Firebase Modular Web v9 Compatibility SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+  <!-- Main JavaScript Logic -->
+  <script src="js/app.js"></script>
+</body>
+            </html>
