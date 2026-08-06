@@ -1,0 +1,317 @@
+:root {
+  --bg-color: #0F172A;
+  --card-bg: rgba(30, 41, 59, 0.75);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --primary-color: #38BDF8;
+  --primary-glow: rgba(56, 189, 248, 0.25);
+  --text-main: #F8FAFC;
+  --text-muted: #94A3B8;
+  --danger: #EF4444;
+  --success: #34D399;
+  --font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  --nav-height: 65px;
+  --header-height: 70px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: var(--font-family);
+  min-height: 100vh;
+  padding-top: var(--header-height);
+  padding-bottom: calc(var(--nav-height) + 20px);
+}
+
+/* Glassmorphism Styles */
+.glass {
+  background: var(--card-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--card-border);
+  border-radius: 20px;
+}
+
+/* Header UI */
+.app-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  z-index: 100;
+  border-radius: 0 0 18px 18px;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  color: #0F172A;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 12px var(--primary-glow);
+}
+
+.user-info h2 { font-size: 0.95rem; font-weight: 700; }
+.user-info p { font-size: 0.75rem; color: var(--text-muted); }
+
+.icon-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-main);
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+}
+
+/* Containers and Section Navigation */
+.content-container {
+  padding: 16px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.view-section {
+  display: none;
+  animation: fadeIn 0.25s ease-in-out;
+}
+
+.view-section.active { display: block; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+/* Cards & Widgets */
+.card {
+  padding: 18px;
+  margin-bottom: 14px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.overall-progress-card {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(30, 41, 59, 0.9));
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.progress-info h3 { font-size: 0.9rem; color: var(--text-muted); }
+.progress-info p { font-size: 1rem; font-weight: 700; }
+
+.progress-bar-container {
+  width: 100%;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: var(--primary-color);
+  box-shadow: 0 0 10px var(--primary-color);
+  transition: width 0.4s ease;
+}
+
+.quote-card {
+  position: relative;
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.08), rgba(30, 41, 59, 0.8));
+}
+
+.quote-icon { color: var(--primary-color); font-size: 1.8rem; opacity: 0.6; }
+.quote-card p { font-style: italic; font-size: 0.88rem; margin: 6px 0; line-height: 1.4; }
+.quote-card small { color: var(--text-muted); display: block; text-align: right; }
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.metric-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px;
+}
+
+.metric-icon {
+  font-size: 1.6rem;
+  padding: 8px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+}
+.metric-icon.water { color: #38BDF8; }
+.metric-icon.prayer { color: #34D399; }
+.metric-icon.sleep { color: #A78BFA; }
+.metric-icon.study { color: #FBBF24; }
+
+.metric-card h3 { font-size: 0.75rem; color: var(--text-muted); }
+.metric-card p { font-size: 0.9rem; font-weight: 700; }
+
+.widget-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.badge {
+  background: var(--primary-glow);
+  color: var(--primary-color);
+  font-size: 0.72rem;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-weight: 700;
+}
+
+/* Lists and Items */
+.item-list { list-style: none; }
+.task-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--card-border);
+}
+.task-item:last-child { border-bottom: none; }
+.task-info { display: flex; align-items: center; gap: 10px; font-size: 0.9rem; }
+.task-item.completed span { text-decoration: line-through; color: var(--text-muted); }
+.empty-state { text-align: center; color: var(--text-muted); font-size: 0.85rem; padding: 14px 0; }
+
+/* Calendar Widget */
+.calendar-widget { margin-bottom: 16px; }
+.calendar-header { text-align: center; font-weight: 700; margin-bottom: 10px; color: var(--primary-color); }
+.calendar-days-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; text-align: center; font-size: 0.8rem; }
+.day-cell { padding: 8px 0; border-radius: 8px; background: rgba(255, 255, 255, 0.03); }
+.day-cell.active { background: var(--primary-color); color: #000; font-weight: 700; }
+
+/* Checklists & Trackers */
+.prayer-checklist { display: flex; flex-direction: column; gap: 12px; margin-top: 12px; }
+.check-item { display: flex; align-items: center; gap: 10px; font-size: 0.9rem; cursor: pointer; }
+.tracker-row { display: flex; justify-content: space-between; align-items: center; }
+.margin-top { margin-top: 12px; }
+.setting-item { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; }
+
+/* Buttons & Floating FAB */
+.primary-btn, .secondary-btn, .action-btn {
+  border: none;
+  border-radius: 10px;
+  padding: 10px 16px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.primary-btn { background: var(--primary-color); color: #0F172A; }
+.secondary-btn { background: rgba(255, 255, 255, 0.1); color: var(--text-main); }
+.action-btn { background: var(--primary-glow); color: var(--primary-color); }
+
+.fab-btn {
+  position: fixed;
+  bottom: calc(var(--nav-height) + 18px);
+  right: 20px;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  color: #0F172A;
+  border: none;
+  box-shadow: 0 4px 18px var(--primary-glow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 150;
+  cursor: pointer;
+}
+
+/* Modal UI */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  padding: 20px;
+}
+.modal-overlay.hidden { display: none; }
+.modal-content { width: 100%; max-width: 400px; padding: 20px; }
+.modal-content form { display: flex; flex-direction: column; gap: 12px; margin-top: 12px; }
+.modal-content input, .modal-content select {
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid var(--card-border);
+  color: var(--text-main);
+  padding: 12px;
+  border-radius: 10px;
+  outline: none;
+}
+.form-row { display: flex; gap: 10px; }
+.form-row input { flex: 1; }
+.modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 8px; }
+
+/* Navigation */
+.bottom-nav {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  height: var(--nav-height);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 18px 18px 0 0;
+  z-index: 100;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.nav-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  font-size: 0.68rem;
+  cursor: pointer;
+  width: 20%;
+}
+
+.nav-btn.active { color: var(--primary-color); }
+.nav-btn .material-symbols-rounded { font-size: 1.4rem; }
