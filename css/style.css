@@ -25,11 +25,21 @@ body{
 
 h1{
     color:#38bdf8;
+    margin-bottom:10px;
+}
+
+h2{
+    margin-bottom:15px;
 }
 
 p{
     color:#cbd5e1;
-    margin-top:10px;
+    margin-bottom:15px;
+}
+
+label{
+    display:block;
+    margin:8px 0;
 }
 
 .btn{
@@ -40,4 +50,5 @@ p{
     background:#38bdf8;
     color:white;
     font-size:18px;
+    cursor:pointer;
 }
