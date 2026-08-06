@@ -1,36 +1,121 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#0F172A" />
   <title>Life Tracker</title>
-
-  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- Google Fonts & Material Symbols -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
-
 <body>
+  <div id="app">
+    <!-- Header / Top Bar -->
+    <header class="app-header glass">
+      <div class="user-profile">
+        <div class="avatar" id="user-avatar">U</div>
+        <div class="user-info">
+          <h2 id="greeting">Good Day</h2>
+          <p id="current-date">Loading date...</p>
+        </div>
+      </div>
+      <button class="icon-btn" id="btn-sync" aria-label="Sync Data">
+        <span class="material-symbols-rounded">sync</span>
+      </button>
+    </header>
 
-<div class="container">
+    <!-- Main Dynamic Content Area -->
+    <main id="main-content" class="content-container">
+      <!-- Dashboard Section (Default) -->
+      <section id="section-dashboard" class="view-section active">
+        <!-- Motivational Quote Card -->
+        <div class="card glass quote-card">
+          <span class="material-symbols-rounded quote-icon">format_quote</span>
+          <p id="quote-text">"Small daily improvements over time lead to stunning results."</p>
+          <small id="quote-author">- Robin Sharma</small>
+        </div>
 
-  <div class="card">
-    <h1>🌿 Life Tracker</h1>
-    <p>Track Your Life. Build Better Habits.</p>
+        <!-- Progress Overview Grid -->
+        <div class="metrics-grid">
+          <div class="card glass metric-card">
+            <span class="material-symbols-rounded metric-icon water">water_drop</span>
+            <div>
+              <h3>Water</h3>
+              <p id="dash-water-val">0.0 / 2.0 L</p>
+            </div>
+          </div>
+          <div class="card glass metric-card">
+            <span class="material-symbols-rounded metric-icon prayer">mosque</span>
+            <div>
+              <h3>Prayers</h3>
+              <p id="dash-prayer-val">0 / 5</p>
+            </div>
+          </div>
+          <div class="card glass metric-card">
+            <span class="material-symbols-rounded metric-icon sleep">bedtime</span>
+            <div>
+              <h3>Sleep</h3>
+              <p id="dash-sleep-val">0.0 hrs</p>
+            </div>
+          </div>
+          <div class="card glass metric-card">
+            <span class="material-symbols-rounded metric-icon study">menu_book</span>
+            <div>
+              <h3>Study</h3>
+              <p id="dash-study-val">0.0 hrs</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Today's Tasks Summary -->
+        <div class="card glass tasks-widget">
+          <div class="widget-header">
+            <h3>Today's Tasks</h3>
+            <span class="badge" id="task-count">0 remaining</span>
+          </div>
+          <ul id="dashboard-task-list" class="item-list">
+            <li class="empty-state">No tasks for today. Enjoy your day!</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="bottom-nav glass">
+      <button class="nav-btn active" data-target="section-dashboard">
+        <span class="material-symbols-rounded">dashboard</span>
+        <span>Home</span>
+      </button>
+      <button class="nav-btn" data-target="section-tasks">
+        <span class="material-symbols-rounded">check_circle</span>
+        <span>Tasks</span>
+      </button>
+      <button class="nav-btn" data-target="section-habits">
+        <span class="material-symbols-rounded">dataset_linked</span>
+        <span>Habits</span>
+      </button>
+      <button class="nav-btn" data-target="section-trackers">
+        <span class="material-symbols-rounded">analytics</span>
+        <span>Trackers</span>
+      </button>
+      <button class="nav-btn" data-target="section-profile">
+        <span class="material-symbols-rounded">person</span>
+        <span>Profile</span>
+      </button>
+    </nav>
   </div>
 
-  <div class="card">
-    <h2>আজকের কাজ</h2>
+  <!-- Firebase Compatibility SDKs (V8 syntax for light standalone mobile scripts) -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 
-    <label><input type="checkbox"> ফজরের নামাজ</label><br><br>
-    <label><input type="checkbox"> ৩০ মিনিট পড়াশোনা</label><br><br>
-    <label><input type="checkbox"> ২ লিটার পানি পান</label><br><br>
-    <label><input type="checkbox"> ৩০ মিনিট ব্যায়াম</label>
-  </div>
-
-  <button class="btn">➕ নতুন Task</button>
-
-</div>
-
-<script src="app.js"></script>
-
+  <!-- Main Application Script -->
+  <script src="js/app.js"></script>
 </body>
-</html>
+        </html>
