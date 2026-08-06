@@ -1,3 +1,3 @@
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("Life Tracker Started 🚀");
+document.querySelector(".btn").addEventListener("click",function(){
+    alert("🚀 নতুন Task ফিচার খুব শীঘ্রই আসছে!");
 });
