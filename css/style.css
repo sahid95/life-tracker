@@ -1,68 +1,80 @@
 /* ==========================================
-   Life Tracker v1.0
-   Part 1 - Base UI
+   Life Tracker Pro v1.0
+   style.css
 ========================================== */
 
 :root{
-    --primary:#22c55e;
-    --secondary:#16a34a;
-    --accent:#38bdf8;
 
-    --background:#0f172a;
-    --surface:#1e293b;
-    --surface2:#334155;
+--primary:#22c55e;
+--primary-dark:#16a34a;
 
-    --text:#ffffff;
-    --text2:#cbd5e1;
+--secondary:#38bdf8;
 
-    --danger:#ef4444;
-    --warning:#f59e0b;
+--background:#0f172a;
 
-    --radius:18px;
+--surface:#1e293b;
 
-    --shadow:0 10px 25px rgba(0,0,0,.35);
+--surface2:#334155;
+
+--text:#ffffff;
+
+--text2:#cbd5e1;
+
+--danger:#ef4444;
+
+--warning:#f59e0b;
+
+--radius:18px;
+
+--shadow:0 10px 30px rgba(0,0,0,.35);
+
 }
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+
+margin:0;
+
+padding:0;
+
+box-sizing:border-box;
+
 }
 
 html{
-    scroll-behavior:smooth;
+
+scroll-behavior:smooth;
+
 }
 
 body{
 
-    font-family:"Poppins",sans-serif;
+font-family:'Poppins',sans-serif;
 
-    background:linear-gradient(
-    180deg,
-    #071321,
-    #0f172a,
-    #111827);
+background:linear-gradient(
+180deg,
+#020617,
+#0f172a,
+#111827);
 
-    color:var(--text);
+color:white;
 
-    min-height:100vh;
+min-height:100vh;
 
 }
 
 .app{
 
-    width:100%;
-    max-width:480px;
+width:100%;
 
-    margin:auto;
+max-width:480px;
 
-    padding:18px;
+margin:auto;
+
+padding:20px;
+
+padding-bottom:100px;
 
 }
-
-/* ===========================
-Header
-=========================== */
 
 .header{
 
@@ -72,7 +84,7 @@ justify-content:space-between;
 
 align-items:center;
 
-margin-top:10px;
+margin-bottom:25px;
 
 }
 
@@ -86,23 +98,24 @@ font-weight:700;
 
 .header p{
 
-margin-top:6px;
+margin-top:8px;
 
 color:var(--text2);
-
-font-size:14px;
 
 }
 
 .avatar{
 
-width:55px;
+width:58px;
 
-height:55px;
+height:58px;
 
 border-radius:50%;
 
-background:var(--primary);
+background:linear-gradient(
+135deg,
+#22c55e,
+#16a34a);
 
 display:flex;
 
@@ -114,92 +127,27 @@ font-size:20px;
 
 font-weight:bold;
 
-color:white;
-
 box-shadow:var(--shadow);
 
 }
 
-/* ===========================
-Cards
-=========================== */
-
-.motivation,
+.card,
 .progressCard,
 .taskSection,
-.notes,
 .trackerCard,
 .stat{
 
 background:rgba(255,255,255,.06);
 
-backdrop-filter:blur(18px);
+backdrop-filter:blur(20px);
 
-border-radius:var(--radius);
+border-radius:20px;
 
-padding:18px;
+padding:20px;
+
+margin-top:20px;
 
 box-shadow:var(--shadow);
-
-margin-top:18px;
-
-}
-
-/* ===========================
-Welcome
-=========================== */
-
-.welcome{
-
-margin-top:25px;
-
-}
-
-.welcome h2{
-
-font-size:28px;
-
-font-weight:700;
-
-}
-
-.welcome p{
-
-margin-top:8px;
-
-color:var(--text2);
-
-}
-
-/* ===========================
-Motivation
-=========================== */
-
-.motivation h3{
-
-margin-bottom:12px;
-
-}
-
-.motivation p{
-
-line-height:1.7;
-
-color:#e2e8f0;
-
-}
-
-/* ===========================
-Progress
-=========================== */
-
-.progressHeader{
-
-display:flex;
-
-justify-content:space-between;
-
-margin-bottom:12px;
 
 }
 
@@ -211,15 +159,17 @@ background:#334155;
 
 border-radius:30px;
 
+margin-top:15px;
+
 overflow:hidden;
 
 }
 
-.progressFill{
-
-width:0%;
+#progressFill{
 
 height:100%;
+
+width:0%;
 
 background:linear-gradient(
 90deg,
@@ -230,11 +180,15 @@ transition:.5s;
 
 }
 
-/* ===========================
-Quick Stats
-=========================== */
+#progressText{
 
-.quickStats{
+margin-top:10px;
+
+font-weight:600;
+
+}
+
+.stats{
 
 display:grid;
 
@@ -252,209 +206,157 @@ text-align:center;
 
 }
 
-.stat h2{
+.stat h3{
 
 font-size:28px;
 
-color:var(--accent);
+color:#38bdf8;
+
+margin-bottom:8px;
 
 }
 
-.stat p{
-
-margin-top:8px;
-
-font-size:13px;
-
-color:var(--text2);
-
-  }
-/* ==========================================
-   Part 2 - Task & Tracker UI
-========================================== */
-
-/* Task Section */
-
 .taskInput{
-    display:flex;
-    gap:10px;
-    margin-top:15px;
+
+display:flex;
+
+gap:10px;
+
+margin-top:15px;
+
 }
 
 .taskInput input{
-    flex:1;
-    padding:14px;
-    border:none;
-    outline:none;
-    border-radius:14px;
-    background:#334155;
-    color:#fff;
-    font-size:15px;
-}
 
-.taskInput input::placeholder{
-    color:#94a3b8;
+flex:1;
+
+padding:14px;
+
+border:none;
+
+outline:none;
+
+border-radius:14px;
+
+background:#334155;
+
+color:white;
+
 }
 
 .taskInput button{
-    padding:14px 22px;
-    border:none;
-    border-radius:14px;
-    background:var(--primary);
-    color:#fff;
-    cursor:pointer;
-    font-weight:600;
-    transition:.3s;
-}
 
-.taskInput button:hover{
-    background:var(--secondary);
+padding:14px 20px;
+
+border:none;
+
+border-radius:14px;
+
+background:#22c55e;
+
+color:white;
+
+font-weight:bold;
+
+cursor:pointer;
+
 }
 
 #taskList{
-    list-style:none;
-    margin-top:18px;
+
+list-style:none;
+
+margin-top:20px;
+
 }
 
 #taskList li{
-    background:#334155;
-    padding:14px;
-    margin-bottom:10px;
-    border-radius:12px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
 
-#taskList li.completed{
-    text-decoration:line-through;
-    opacity:.6;
-}
+background:#334155;
 
-/* Tracker Grid */
+padding:14px;
+
+border-radius:12px;
+
+margin-bottom:12px;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+}
 
 .trackerGrid{
-    display:grid;
-    grid-template-columns:1fr;
-    gap:18px;
-    margin-top:20px;
+
+display:grid;
+
+gap:20px;
+
+margin-top:25px;
+
 }
 
-/* Counter */
+.trackerCard textarea{
 
-.counter{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:15px;
-    margin-top:15px;
-}
+width:100%;
 
-.counter button{
-    width:42px;
-    height:42px;
-    border:none;
-    border-radius:50%;
-    background:var(--primary);
-    color:#fff;
-    font-size:20px;
-    cursor:pointer;
-}
+margin-top:12px;
 
-.counter span{
-    font-size:24px;
-    font-weight:bold;
-}
+padding:12px;
 
-/* Prayer */
+background:#334155;
 
-.checkList{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-    margin-top:15px;
-}
+color:white;
 
-.checkList label{
-    display:flex;
-    align-items:center;
-    gap:10px;
-}
+border:none;
 
-/* Study */
+border-radius:12px;
 
-textarea{
-    width:100%;
-    min-height:120px;
-    margin-top:12px;
-    padding:12px;
-    border:none;
-    border-radius:12px;
-    resize:none;
-    background:#334155;
-    color:#fff;
-}
+resize:none;
 
-/* Sleep */
+min-height:120px;
 
-input[type="time"]{
-    width:100%;
-    margin-top:15px;
-    padding:12px;
-    border:none;
-    border-radius:12px;
-    background:#334155;
-    color:#fff;
-  }
-/* ==========================================
-   Part 3 - Navigation, FAB, Animation
-========================================== */
-
-.notes h2{
-    margin-bottom:15px;
 }
 
 .bottomNav{
-    position:fixed;
-    left:50%;
-    transform:translateX(-50%);
-    bottom:0;
-    width:100%;
-    max-width:480px;
 
-    background:rgba(15,23,42,.95);
-    backdrop-filter:blur(20px);
+position:fixed;
 
-    display:flex;
-    justify-content:space-around;
-    align-items:center;
+bottom:0;
 
-    padding:14px 0;
+left:50%;
 
-    border-top:1px solid rgba(255,255,255,.08);
+transform:translateX(-50%);
+
+width:100%;
+
+max-width:480px;
+
+background:#0f172a;
+
+display:flex;
+
+justify-content:space-around;
+
+padding:15px;
+
+border-top:1px solid rgba(255,255,255,.1);
+
 }
 
 .bottomNav button{
 
-    border:none;
+background:none;
 
-    background:none;
+border:none;
 
-    color:white;
+color:white;
 
-    font-size:24px;
+font-size:22px;
 
-    cursor:pointer;
-
-    transition:.3s;
-
-}
-
-.bottomNav button:hover{
-
-color:var(--primary);
-
-transform:scale(1.15);
+cursor:pointer;
 
 }
 
@@ -462,9 +364,9 @@ transform:scale(1.15);
 
 position:fixed;
 
-right:25px;
-
 bottom:90px;
+
+right:20px;
 
 width:65px;
 
@@ -474,18 +376,15 @@ border:none;
 
 border-radius:50%;
 
-background:linear-gradient(
-135deg,
-#22c55e,
-#16a34a);
+background:#22c55e;
 
 font-size:34px;
 
 color:white;
 
-cursor:pointer;
+box-shadow:var(--shadow);
 
-box-shadow:0 15px 35px rgba(0,0,0,.45);
+cursor:pointer;
 
 transition:.3s;
 
@@ -497,69 +396,7 @@ transform:scale(1.1);
 
 }
 
-/* Scroll */
-
-::-webkit-scrollbar{
-
-width:8px;
-
-}
-
-::-webkit-scrollbar-thumb{
-
-background:#22c55e;
-
-border-radius:20px;
-
-}
-
-/* Animation */
-
-.card,
-.trackerCard,
-.taskSection,
-.notes,
-.stat{
-
-animation:fadeUp .6s ease;
-
-}
-
-@keyframes fadeUp{
-
-from{
-
-opacity:0;
-
-transform:translateY(20px);
-
-}
-
-to{
-
-opacity:1;
-
-transform:translateY(0);
-
-}
-
-}
-
-/* Mobile */
-
 @media(max-width:480px){
-
-.header h1{
-
-font-size:24px;
-
-}
-
-.welcome h2{
-
-font-size:24px;
-
-}
 
 .taskInput{
 
@@ -573,60 +410,10 @@ width:100%;
 
 }
 
-.quickStats{
+.stats{
 
 grid-template-columns:1fr;
 
 }
 
-.floatingBtn{
-
-right:18px;
-
-bottom:85px;
-
-}
-
-}
-
-/* Tablet */
-
-@media(min-width:768px){
-
-.app{
-
-max-width:700px;
-
-}
-
-.trackerGrid{
-
-grid-template-columns:repeat(2,1fr);
-
-}
-
-.quickStats{
-
-grid-template-columns:repeat(3,1fr);
-
-}
-
-}
-
-/* Desktop */
-
-@media(min-width:1024px){
-
-.app{
-
-max-width:900px;
-
-}
-
-.trackerGrid{
-
-grid-template-columns:repeat(2,1fr);
-
-}
-
-  }
+   }
