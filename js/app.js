@@ -1,304 +1,633 @@
-// --- Firebase Config Setup ---
-const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
-};
+/* ==========================================
+   Life Tracker v1.0
+   app.js - Part 1
+========================================== */
 
-// Initialize Firebase
-if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
+// -----------------------------
+// Variables
+// -----------------------------
+
+const taskInput = document.getElementById("taskInput");
+const addTaskBtn = document.getElementById("addTask");
+const taskList = document.getElementById("taskList");
+
+const progressFill = document.getElementById("progressFill");
+const progressText = document.getElementById("progressText");
+
+const taskCount = document.getElementById("taskCount");
+const doneCount = document.getElementById("doneCount");
+
+let tasks = [];
+
+// -----------------------------
+// Greeting
+// -----------------------------
+
+function loadGreeting(){
+
+const hour = new Date().getHours();
+
+let greeting = "Good Evening 🌙";
+
+if(hour < 12){
+
+greeting = "Good Morning ☀️";
+
 }
-const db = firebase.firestore();
-const auth = firebase.auth();
 
-db.enablePersistence({ synchronizeTabs: true }).catch(err => {
-  console.warn("Persistence note:", err.code);
+else if(hour < 18){
+
+greeting = "Good Afternoon 🌤️";
+
+}
+
+document.getElementById("greeting").innerHTML = greeting;
+
+}
+
+// -----------------------------
+// Today's Date
+// -----------------------------
+
+function loadDate(){
+
+const today = new Date();
+
+document.getElementById("todayDate").innerHTML =
+today.toDateString();
+
+}
+
+// -----------------------------
+// Load Tasks
+// -----------------------------
+
+function loadTasks(){
+
+const saved = localStorage.getItem("lifeTasks");
+
+if(saved){
+
+tasks = JSON.parse(saved);
+
+}
+
+renderTasks();
+
+}
+
+// -----------------------------
+// Save Tasks
+// -----------------------------
+
+function saveTasks(){
+
+localStorage.setItem(
+"lifeTasks",
+JSON.stringify(tasks)
+);
+
+}
+
+// -----------------------------
+// Add Task
+// -----------------------------
+
+function addTask(){
+
+const text = taskInput.value.trim();
+
+if(text==""){
+
+alert("Task লিখুন");
+
+return;
+
+}
+
+tasks.push({
+
+title:text,
+
+done:false
+
 });
 
-// Global Application State
-const appState = {
-  user: null,
-  tasks: [],
-  waterIntake: 0,
-  sleepHours: 0,
-  studyHours: 0,
-  prayers: { fajr: false, dhuhr: false, asr: false, maghrib: false, isha: false }
-};
+taskInput.value="";
 
-// Startup Setup
-document.addEventListener('DOMContentLoaded', () => {
-  initUI();
-  initNavigation();
-  initAuthObserver();
-  initTaskModule();
-  initTrackers();
-  renderMiniCalendar();
-  registerServiceWorker();
-});
+saveTasks();
 
-// Update Date Time Clock
-function initUI() {
-  const dateElem = document.getElementById('current-datetime');
+renderTasks();
 
-  function updateClock() {
-    const now = new Date();
-    dateElem.textContent = now.toLocaleDateString('en-US', {
-      weekday: 'short', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit'
-    });
-  }
-  updateClock();
-  setInterval(updateClock, 30000);
 }
 
-// Bottom Navigation Router
-function initNavigation() {
-  const navBtns = document.querySelectorAll('.nav-btn');
-  const sections = document.querySelectorAll('.view-section');
+// -----------------------------
+// Button Event
+// -----------------------------
 
-  navBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const targetId = btn.getAttribute('data-target');
+addTaskBtn.addEventListener(
+"click",
+addTask
+);
 
-      navBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+// -----------------------------
+// Enter Key
+// -----------------------------
 
-      sections.forEach(sec => sec.classList.remove('active'));
-      const activeSection = document.getElementById(targetId);
-      if (activeSection) activeSection.classList.add('active');
-    });
-  });
+taskInput.addEventListener(
+
+"keypress",
+
+function(e){
+
+if(e.key==="Enter"){
+
+addTask();
+
 }
 
-// Authenticate Session
-function initAuthObserver() {
-  auth.onAuthStateChanged(user => {
-    if (user) {
-      appState.user = user;
-      loadUserData(user.uid);
-    } else {
-      auth.signInAnonymously().catch(err => console.error("Auth error:", err));
-    }
-  });
 }
 
-// Sync Firebase Data
-function loadUserData(uid) {
-  db.collection('users').doc(uid).collection('tasks').onSnapshot(snapshot => {
-    appState.tasks = [];
-    snapshot.forEach(doc => appState.tasks.push({ id: doc.id, ...doc.data() }));
-    renderTasks();
-    calculateDailyProgress();
-  });
+);
 
-  db.collection('users').doc(uid).collection('trackers').doc('daily').onSnapshot(doc => {
-    if (doc.exists) {
-      const data = doc.data();
-      appState.waterIntake = data.water || 0;
-      appState.sleepHours = data.sleep || 0;
-      appState.studyHours = data.study || 0;
-      appState.prayers = data.prayers || appState.prayers;
-      updateTrackerUI();
-      calculateDailyProgress();
-    }
-  });
-}
+// -----------------------------
+// Start
+// -----------------------------
 
-// Task Manager Logic
-function initTaskModule() {
-  const modal = document.getElementById('task-modal');
-  const fab = document.getElementById('btn-fab-add');
-  const closeBtn = document.getElementById('btn-close-modal');
-  const form = document.getElementById('task-form');
+loadGreeting();
 
-  fab.addEventListener('click', () => modal.classList.remove('hidden'));
-  closeBtn.addEventListener('click', () => modal.classList.add('hidden'));
+loadDate();
+/* ==========================================
+   Part 2 - Render Tasks
+========================================== */
 
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const title = document.getElementById('task-title').value;
-    const time = document.getElementById('task-time').value;
-    const priority = document.getElementById('task-priority').value;
-
-    if (!appState.user) return;
-
-    db.collection('users').doc(appState.user.uid).collection('tasks').add({
-      title, time, priority, completed: false, createdAt: new Date()
-    }).then(() => {
-      form.reset();
-      modal.classList.add('hidden');
-    });
-  });
-}
-
-// Render Task Lists
 function renderTasks() {
-  const dashList = document.getElementById('dashboard-task-list');
-  const fullList = document.getElementById('full-task-list');
-  const badge = document.getElementById('task-badge-count');
 
-  dashList.innerHTML = '';
-  fullList.innerHTML = '';
+    taskList.innerHTML = "";
 
-  const pending = appState.tasks.filter(t => !t.completed);
-  badge.textContent = `${pending.length} Remaining`;
+    let completed = 0;
 
-  if (appState.tasks.length === 0) {
-    dashList.innerHTML = '<li class="empty-state">No tasks for today. Tap '+' to create one!</li>';
-    fullList.innerHTML = '<li class="empty-state">No tasks added yet.</li>';
-    return;
-  }
+    tasks.forEach((task, index) => {
 
-  appState.tasks.forEach(task => {
-    const li = document.createElement('li');
-    li.className = `task-item ${task.completed ? 'completed' : ''}`;
-    li.innerHTML = `
-      <div class="task-info">
-        <input type="checkbox" ${task.completed ? 'checked' : ''} onclick="toggleTask('${task.id}', ${task.completed})" />
-        <span>${task.title} ${task.time ? '(' + task.time + ')' : ''}</span>
-      </div>
-      <button class="icon-btn" onclick="deleteTask('${task.id}')">
-        <span class="material-symbols-rounded" style="color:var(--danger)">delete</span>
-      </button>
-    `;
-    fullList.appendChild(li);
-    if (!task.completed) {
-      dashList.appendChild(li.cloneNode(true));
-    }
-  });
-}
+        if (task.done) completed++;
 
-window.toggleTask = function(id, status) {
-  if (!appState.user) return;
-  db.collection('users').doc(appState.user.uid).collection('tasks').doc(id).update({
-    completed: !status
-  });
-};
+        const li = document.createElement("li");
 
-window.deleteTask = function(id) {
-  if (!appState.user) return;
-  db.collection('users').doc(appState.user.uid).collection('tasks').doc(id).delete();
-};
+        if (task.done) {
+            li.classList.add("completed");
+        }
 
-// Health & Study Tracker Handlers
-function initTrackers() {
-  document.getElementById('btn-add-water').addEventListener('click', () => {
-    appState.waterIntake += 250;
-    saveTrackers();
-  });
+        li.innerHTML = `
+            <span>${task.title}</span>
 
-  document.getElementById('btn-save-sleep').addEventListener('click', () => {
-    const val = parseFloat(document.getElementById('input-sleep-hours').value);
-    if (!isNaN(val)) {
-      appState.sleepHours = val;
-      saveTrackers();
-    }
-  });
+            <div class="taskButtons">
 
-  document.getElementById('btn-save-study').addEventListener('click', () => {
-    const val = parseFloat(document.getElementById('input-study-hours').value);
-    if (!isNaN(val)) {
-      appState.studyHours = val;
-      saveTrackers();
-    }
-  });
+                <button onclick="toggleTask(${index})">
+                    ${task.done ? "↩️" : "✅"}
+                </button>
 
-  const checkboxes = document.querySelectorAll('#prayer-checklist input');
-  checkboxes.forEach(box => {
-    box.addEventListener('change', (e) => {
-      const prayer = e.target.getAttribute('data-prayer');
-      appState.prayers[prayer] = e.target.checked;
-      saveTrackers();
+                <button onclick="deleteTask(${index})">
+                    🗑️
+                </button>
+
+            </div>
+        `;
+
+        taskList.appendChild(li);
+
     });
-  });
 
-  // Browser Notification Trigger
-  document.getElementById('btn-toggle-notif')?.addEventListener('click', () => {
-    if ('Notification' in window) {
-      Notification.requestPermission().then(permission => {
-        if (permission === 'granted') alert('Notifications Enabled!');
-      });
+    updateStats(completed);
+
+}
+
+/* ==========================================
+   Complete Task
+========================================== */
+
+function toggleTask(index){
+
+    tasks[index].done = !tasks[index].done;
+
+    saveTasks();
+
+    renderTasks();
+
+}
+
+/* ==========================================
+   Delete Task
+========================================== */
+
+function deleteTask(index){
+
+    if(confirm("এই Task মুছে ফেলতে চান?")){
+
+        tasks.splice(index,1);
+
+        saveTasks();
+
+        renderTasks();
+
     }
-  });
+
 }
 
-function saveTrackers() {
-  if (!appState.user) return;
-  db.collection('users').doc(appState.user.uid).collection('trackers').doc('daily').set({
-    water: appState.waterIntake,
-    sleep: appState.sleepHours,
-    study: appState.studyHours,
-    prayers: appState.prayers
-  }, { merge: true });
+/* ==========================================
+   Statistics
+========================================== */
+
+function updateStats(completed){
+
+    taskCount.textContent = tasks.length;
+
+    doneCount.textContent = completed;
+
+    const percent =
+        tasks.length === 0
+        ? 0
+        : Math.round((completed / tasks.length) * 100);
+
+    progressFill.style.width = percent + "%";
+
+    progressText.textContent = percent + "%";
+
 }
 
-function updateTrackerUI() {
-  document.getElementById('dash-water-val').textContent = `${(appState.waterIntake / 1000).toFixed(1)} / 2.0 L`;
-  document.getElementById('tracker-water-text').textContent = `${appState.waterIntake} / 2000 ml`;
+/* ==========================================
+   Daily Motivation Quotes
+========================================== */
 
-  document.getElementById('dash-sleep-val').textContent = `${appState.sleepHours.toFixed(1)} hrs`;
-  document.getElementById('dash-study-val').textContent = `${appState.studyHours.toFixed(1)} hrs`;
+const quotes = [
 
-  const completedPrayers = Object.values(appState.prayers).filter(Boolean).length;
-  document.getElementById('dash-prayer-val').textContent = `${completedPrayers} / 5`;
+"আজকের ছোট অগ্রগতি আগামীকালের বড় সফলতা।",
 
-  Object.keys(appState.prayers).forEach(p => {
-    const elem = document.querySelector(`[data-prayer="${p}"]`);
-    if (elem) elem.checked = appState.prayers[p];
-  });
+"শৃঙ্খলা প্রতিভার চেয়েও শক্তিশালী।",
+
+"আজ যা করতে পারো, কাল পর্যন্ত অপেক্ষা করো না।",
+
+"প্রতিদিন নিজেকে গতকালের চেয়ে একটু ভালো বানাও।",
+
+"সফলতা একদিনে আসে না, প্রতিদিনের অভ্যাসে আসে।"
+
+];
+
+function loadQuote(){
+
+    const random =
+    Math.floor(Math.random() * quotes.length);
+
+    document.getElementById("quote").textContent =
+    quotes[random];
+
 }
 
-// Calculate Overall Progress Bar Percentage
-function calculateDailyProgress() {
-  let totalPoints = 0;
-  let earnedPoints = 0;
+loadQuote();
+/* ==========================================
+   Part 3 - Water Tracker
+========================================== */
 
-  // Task score (30%)
-  if (appState.tasks.length > 0) {
-    totalPoints += 30;
-    const doneTasks = appState.tasks.filter(t => t.completed).length;
-    earnedPoints += (doneTasks / appState.tasks.length) * 30;
-  }
+let water = Number(localStorage.getItem("water")) || 0;
 
-  // Water score (20%)
-  totalPoints += 20;
-  earnedPoints += Math.min(1, appState.waterIntake / 2000) * 20;
+const waterCount = document.getElementById("waterCount");
+const waterPlus = document.getElementById("waterPlus");
+const waterMinus = document.getElementById("waterMinus");
 
-  // Prayer score (25%)
-  totalPoints += 25;
-  const prayerCount = Object.values(appState.prayers).filter(Boolean).length;
-  earnedPoints += (prayerCount / 5) * 25;
+function updateWater(){
 
-  // Sleep score (25%)
-  totalPoints += 25;
-  earnedPoints += Math.min(1, appState.sleepHours / 7) * 25;
+    waterCount.textContent = water;
 
-  const percent = Math.round((earnedPoints / totalPoints) * 100) || 0;
-  document.getElementById('overall-progress-bar').style.width = `${percent}%`;
-  document.getElementById('progress-percent-text').textContent = `${percent}% Completed Today`;
+    localStorage.setItem("water", water);
+
 }
 
-// Render Mini Calendar Grid
-function renderMiniCalendar() {
-  const calGrid = document.getElementById('calendar-days');
-  if (!calGrid) return;
-  calGrid.innerHTML = '';
+if(waterPlus){
 
-  const today = new Date().getDate();
-  for (let i = 1; i <= 31; i++) {
-    const div = document.createElement('div');
-    div.className = `day-cell ${i === today ? 'active' : ''}`;
-    div.textContent = i;
-    calGrid.appendChild(div);
-  }
+waterPlus.addEventListener("click",()=>{
+
+    water++;
+
+    updateWater();
+
+});
+
 }
 
-// Service Worker for PWA
-function registerServiceWorker() {
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./service-worker.js').catch(err => console.warn(err));
-  }
-  }
+if(waterMinus){
+
+waterMinus.addEventListener("click",()=>{
+
+    if(water>0){
+
+        water--;
+
+        updateWater();
+
+    }
+
+});
+
+}
+
+updateWater();
+
+
+/* ==========================================
+   Study Notes
+========================================== */
+
+const studyNote = document.getElementById("studyNote");
+
+if(studyNote){
+
+studyNote.value =
+localStorage.getItem("studyNote") || "";
+
+studyNote.addEventListener("input",()=>{
+
+localStorage.setItem(
+
+"studyNote",
+
+studyNote.value
+
+);
+
+});
+
+}
+
+
+/* ==========================================
+   Personal Notes
+========================================== */
+
+const noteBox = document.getElementById("noteBox");
+
+if(noteBox){
+
+noteBox.value =
+localStorage.getItem("notes") || "";
+
+noteBox.addEventListener("input",()=>{
+
+localStorage.setItem(
+
+"notes",
+
+noteBox.value
+
+);
+
+});
+
+}
+
+
+/* ==========================================
+   Sleep Time
+========================================== */
+
+const sleepTime =
+document.getElementById("sleepTime");
+
+if(sleepTime){
+
+sleepTime.value =
+localStorage.getItem("sleepTime") || "";
+
+sleepTime.addEventListener("change",()=>{
+
+localStorage.setItem(
+
+"sleepTime",
+
+sleepTime.value
+
+);
+
+});
+
+}
+
+
+/* ==========================================
+   Prayer Tracker
+========================================== */
+
+const prayers =
+document.querySelectorAll(".checkList input");
+
+prayers.forEach((item,index)=>{
+
+const key="prayer_"+index;
+
+item.checked =
+localStorage.getItem(key)==="true";
+
+item.addEventListener("change",()=>{
+
+localStorage.setItem(
+
+key,
+
+item.checked
+
+);
+
+});
+
+});
+
+
+/* ==========================================
+   Floating Button
+========================================== */
+
+const floating =
+document.getElementById("floatingAdd");
+
+if(floating){
+
+floating.addEventListener("click",()=>{
+
+taskInput.focus();
+
+});
+
+}
+
+
+/* ==========================================
+   Reset Daily Water
+========================================== */
+
+function resetDailyWater(){
+
+const today=new Date().toDateString();
+
+const last=
+localStorage.getItem("waterDate");
+
+if(last!==today){
+
+water=0;
+
+updateWater();
+
+localStorage.setItem("waterDate",today);
+
+}
+
+}
+
+resetDailyWater();
+
+loadTasks();
+/* ==========================================
+   Part 4 - Dashboard & Daily Progress
+========================================== */
+
+// Habit Counter
+function updateHabitCount() {
+
+    let habits = 0;
+
+    document.querySelectorAll(".checkList input").forEach(item => {
+        if (item.checked) habits++;
+    });
+
+    const habitCount = document.getElementById("habitCount");
+
+    if (habitCount) {
+        habitCount.textContent = habits;
+    }
+
+}
+
+document.querySelectorAll(".checkList input").forEach(item => {
+
+    item.addEventListener("change", () => {
+
+        updateHabitCount();
+
+        updateDashboard();
+
+    });
+
+});
+
+updateHabitCount();
+
+
+// Dashboard Progress
+
+function updateDashboard(){
+
+    const totalTasks = tasks.length;
+
+    const completedTasks =
+        tasks.filter(t => t.done).length;
+
+    const prayers =
+        document.querySelectorAll(".checkList input:checked").length;
+
+    const waterScore =
+        Math.min(water,8);
+
+    let score =
+        completedTasks +
+        prayers +
+        waterScore;
+
+    let max =
+        Math.max(totalTasks,1)+5+8;
+
+    let percent =
+        Math.round((score/max)*100);
+
+    if(percent>100) percent=100;
+
+    progressFill.style.width =
+        percent+"%";
+
+    progressText.textContent =
+        percent+"%";
+
+}
+
+updateDashboard();
+
+
+// Floating Button
+
+const fab =
+document.getElementById("floatingAdd");
+
+if(fab){
+
+fab.addEventListener("click",()=>{
+
+taskInput.focus();
+
+taskInput.scrollIntoView({
+
+behavior:"smooth"
+
+});
+
+});
+
+}
+
+
+// Keyboard Shortcut
+
+document.addEventListener("keydown",(e)=>{
+
+if(e.key==="Escape"){
+
+taskInput.value="";
+
+}
+
+});
+
+
+// Welcome Message
+
+function welcome(){
+
+const hour=new Date().getHours();
+
+let msg="আজকের দিনটি সুন্দর হোক ❤️";
+
+if(hour<12){
+
+msg="🌅 শুভ সকাল";
+
+}
+
+else if(hour<18){
+
+msg="☀️ শুভ অপরাহ্ন";
+
+}
+
+else{
+
+msg="🌙 শুভ সন্ধ্যা";
+
+}
+
+console.log(msg);
+
+}
+
+welcome();
+
+
+// Console Logo
+
+console.log("%c🌿 Life Tracker Started",
+"color:#22c55e;font-size:20px;font-weight:bold;");
