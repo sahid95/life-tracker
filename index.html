@@ -3,173 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Life Tracker Pro</title>
-
-  <meta name="theme-color" content="#16a34a">
-
-  <link rel="manifest" href="manifest.json">
-
+  <title>Life Tracker</title>
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/dashboard.css">
-  <link rel="stylesheet" href="css/task.css">
-  <link rel="stylesheet" href="css/tracker.css">
-  <link rel="stylesheet" href="css/animation.css">
-  <link rel="stylesheet" href="css/responsive.css">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#4f46e5">
 </head>
-
 <body>
 
-<div class="app">
+  <header class="app-header">
+    <h1 id="page-title">Dashboard</h1>
+    <button id="theme-toggle" class="icon-btn" aria-label="Toggle Theme">🌙</button>
+  </header>
 
-<header class="header">
-    <div>
-        <h1>🌿 Life Tracker Pro</h1>
-        <p id="todayDate"></p>
-    </div>
+  <main id="app-content" class="container">
+    <!-- View Dynamic Content Here -->
+  </main>
 
-    <div class="avatar">MS</div>
-</header>
+  <nav class="bottom-nav">
+    <button class="nav-btn active" data-target="dashboard">
+      <span class="icon">🏠</span>
+      <span class="label">Home</span>
+    </button>
+    <button class="nav-btn" data-target="task">
+      <span class="icon">✅</span>
+      <span class="label">Tasks</span>
+    </button>
+    <button class="nav-btn" data-target="habit">
+      <span class="icon">🔄</span>
+      <span class="label">Habits</span>
+    </button>
+    <button class="nav-btn" data-target="prayer">
+      <span class="icon">🕌</span>
+      <span class="label">Prayer</span>
+    </button>
+    <button class="nav-btn" data-target="settings">
+      <span class="icon">⚙️</span>
+      <span class="label">Settings</span>
+    </button>
+  </nav>
 
-<section class="dashboard">
-
-<div class="card">
-<h2 id="greeting">Good Morning 👋</h2>
-<p id="quote"></p>
-</div>
-
-<div class="card progressCard">
-<h3>Today's Progress</h3>
-
-<div class="progressBar">
-<div id="progressFill"></div>
-</div>
-
-<p id="progressText">0%</p>
-
-</div>
-
-</section>
-
-<section class="stats">
-
-<div class="stat">
-<h3 id="taskCount">0</h3>
-<p>Tasks</p>
-</div>
-
-<div class="stat">
-<h3 id="doneCount">0</h3>
-<p>Completed</p>
-</div>
-
-<div class="stat">
-<h3 id="habitCount">0</h3>
-<p>Habits</p>
-</div>
-
-</section>
-
-<section class="taskSection">
-
-<h2>Today's Tasks</h2>
-
-<div class="taskInput">
-
-<input
-id="taskInput"
-type="text"
-placeholder="নতুন Task লিখুন">
-
-<button id="addTask">
-Add
-</button>
-
-</div>
-
-<ul id="taskList"></ul>
-
-</section>
-
-<section class="trackerGrid">
-
-<div class="trackerCard">
-
-<h3>💧 Water</h3>
-
-<button id="waterMinus">-</button>
-
-<span id="waterCount">0</span>
-
-<button id="waterPlus">+</button>
-
-</div>
-
-<div class="trackerCard">
-
-<h3>🕌 Prayer</h3>
-
-<label><input type="checkbox">ফজর</label>
-<label><input type="checkbox">যোহর</label>
-<label><input type="checkbox">আসর</label>
-<label><input type="checkbox">মাগরিব</label>
-<label><input type="checkbox">এশা</label>
-
-</div>
-
-<div class="trackerCard">
-
-<h3>📚 Study</h3>
-
-<textarea
-id="studyNote"
-placeholder="আজ কী পড়বেন?"></textarea>
-
-</div>
-
-<div class="trackerCard">
-
-<h3>📝 Notes</h3>
-
-<textarea
-id="noteBox"
-placeholder="আজকের নোট"></textarea>
-
-</div>
-
-</section>
-
-<footer class="bottomNav">
-
-<button>🏠</button>
-<button>📅</button>
-<button>📊</button>
-<button>⚙️</button>
-
-</footer>
-
-<button class="floatingBtn" id="floatingAdd">+</button>
-
-</div>
-
-<script src="js/storage.js"></script>
-<script src="js/task.js"></script>
-<script src="js/dashboard.js"></script>
-<script src="js/habit.js"></script>
-<script src="js/prayer.js"></script>
-<script src="js/water.js"></script>
-<script src="js/study.js"></script>
-<script src="js/notes.js"></script>
-<script src="js/calendar.js"></script>
-<script src="js/statistics.js"></script>
-<script src="js/notification.js"></script>
-<script src="js/firebase.js"></script>
-<script src="js/settings.js"></script>
-<script src="js/app.js"></script>
-
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
 </body>
-    </html>
+</html>
