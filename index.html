@@ -1,48 +1,178 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Life Tracker</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#4f46e5">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#10251f">
+<meta name="description" content="Personal Life Management System">
+<link rel="manifest" href="manifest.json">
+<title>Life Tracker — Build Better Habits</title>
+<style>
+:root{--bg:#f3f6f4;--panel:#fff;--ink:#172a24;--muted:#687970;--line:#e2eae5;--brand:#176b50;--brand2:#dff3e9;--danger:#b64242;--shadow:0 8px 28px #17382b0d}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Noto Sans Bengali",sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}.app{max-width:1100px;margin:auto;padding:16px 14px 90px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:8px 0 18px}.brand{display:flex;align-items:center;gap:10px}.logo{width:44px;height:44px;border-radius:14px;background:var(--ink);color:white;display:grid;place-items:center;font-weight:800}.brand h1{font-size:19px;margin:0}.brand small{color:var(--muted)}.top-actions{display:flex;gap:8px}.btn,.iconbtn{border:0;border-radius:12px;padding:10px 13px;background:var(--brand);color:white;font-weight:650}.btn.secondary{background:var(--brand2);color:var(--brand)}.btn.ghost{background:#edf1ee;color:var(--ink)}.iconbtn{padding:9px;background:#edf1ee;color:var(--ink)}.hero{background:linear-gradient(120deg,#10251f,#176b50);color:white;border-radius:22px;padding:20px;margin-bottom:15px;box-shadow:var(--shadow)}.hero h2{margin:0 0 5px;font-size:22px}.hero p{margin:0;color:#d5e9df}.hero-row{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}.shift-pill{background:#ffffff20;border:1px solid #ffffff30;border-radius:30px;padding:8px 12px;font-size:13px}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:14px 0}.stat,.panel,.module{background:var(--panel);border:1px solid var(--line);border-radius:17px;padding:15px;box-shadow:var(--shadow)}.stat small{color:var(--muted)}.stat strong{display:block;font-size:24px;margin-top:5px}.stat span{font-size:12px;color:var(--muted)}.section-title{font-size:17px;margin:22px 0 10px}.quickgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.quick{display:flex;align-items:center;gap:10px;text-align:left;background:white;border:1px solid var(--line);border-radius:15px;padding:13px;color:var(--ink)}.quick b{display:block;font-size:14px}.quick small{color:var(--muted)}.emoji{font-size:22px}.tabs{display:flex;gap:7px;overflow:auto;padding:4px 1px 12px;scrollbar-width:none;position:sticky;top:0;background:var(--bg);z-index:5}.tabs button{white-space:nowrap;border:1px solid var(--line);background:white;color:var(--muted);border-radius:30px;padding:9px 13px}.tabs button.active{background:var(--ink);color:white;border-color:var(--ink)}.page{display:none}.page.active{display:block}.panel{margin:12px 0}.panel h3{margin:0 0 12px;font-size:16px}.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.field{display:flex;flex-direction:column;gap:5px}.field label{font-size:13px;color:var(--muted)}input,select,textarea{width:100%;border:1px solid var(--line);border-radius:11px;padding:10px 11px;background:#fbfdfb;color:var(--ink);min-width:0}textarea{min-height:74px;resize:vertical}.wide{grid-column:1/-1}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.list{display:flex;flex-direction:column;gap:8px}.item{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;border:1px solid var(--line);border-radius:12px;padding:11px}.item small{display:block;color:var(--muted);margin-top:3px}.item .right{display:flex;gap:6px;align-items:center}.tag{font-size:11px;background:var(--brand2);color:var(--brand);border-radius:20px;padding:4px 8px}.empty{color:var(--muted);font-size:13px;padding:12px;text-align:center}.checkrow{display:flex;align-items:center;gap:9px;padding:9px 0;border-bottom:1px solid var(--line)}.checkrow input{width:19px;height:19px;accent-color:var(--brand)}.checkrow span{flex:1}.progress{height:9px;background:#e9efeb;border-radius:20px;overflow:hidden}.progress i{display:block;height:100%;background:var(--brand);width:0}.muted{color:var(--muted)}.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}.money{font-variant-numeric:tabular-nums}.danger{color:var(--danger)}.footer{text-align:center;color:var(--muted);font-size:12px;margin-top:28px}.notice{background:#fff7e5;border:1px solid #f2dfac;color:#72551a;padding:11px;border-radius:12px;font-size:13px;margin:10px 0}
+@media(max-width:700px){.grid{grid-template-columns:repeat(2,1fr)}.quickgrid{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}.app{padding:12px 11px 90px}.hero{padding:17px}.brand h1{font-size:17px}}
+@media(max-width:390px){.formgrid{grid-template-columns:1fr}.wide{grid-column:auto}.quick{padding:10px}.stat strong{font-size:21px}}
+</style>
 </head>
 <body>
-
-  <header class="app-header">
-    <h1 id="page-title">Dashboard</h1>
-    <button id="theme-toggle" class="icon-btn" aria-label="Toggle Theme">🌙</button>
-  </header>
-
-  <main id="app-content" class="container">
-    <!-- View Dynamic Content Here -->
-  </main>
-
-  <nav class="bottom-nav">
-    <button class="nav-btn active" data-target="dashboard">
-      <span class="icon">🏠</span>
-      <span class="label">Home</span>
-    </button>
-    <button class="nav-btn" data-target="task">
-      <span class="icon">✅</span>
-      <span class="label">Tasks</span>
-    </button>
-    <button class="nav-btn" data-target="habit">
-      <span class="icon">🔄</span>
-      <span class="label">Habits</span>
-    </button>
-    <button class="nav-btn" data-target="prayer">
-      <span class="icon">🕌</span>
-      <span class="label">Prayer</span>
-    </button>
-    <button class="nav-btn" data-target="settings">
-      <span class="icon">⚙️</span>
-      <span class="label">Settings</span>
-    </button>
-  </nav>
-
-  <script src="js/storage.js"></script>
-  <script src="js/app.js"></script>
-</body>
-</html>
+<div class="app">
+<header class="top">
+ <div class="brand"><div class="logo">LT</div><div><h1>Life Tracker</h1><small>Build Better Habits Every Day</small></div></div>
+ <div class="top-actions"><button class="iconbtn" id="notifyBtn" title="Notifications">🔔</button><button class="iconbtn" id="backupBtn" title="Backup">⬇️</button></div>
+</header>
+<section class="hero">
+ <div class="hero-row"><div><h2 id="greeting">আজকের দিনটি গুছিয়ে শুরু করুন</h2><p id="todayText"></p></div><div class="shift-pill" id="shiftBadge">শিফট নির্ধারণ করুন</div></div>
+ <div style="margin-top:17px"><div class="hero-row"><small>আজকের অগ্রগতি</small><b id="progressText">0%</b></div><div class="progress" style="margin-top:7px;background:#ffffff30"><i id="progressBar" style="background:#a8edc8"></i></div></div>
+</section>
+<div class="grid">
+ <div class="stat"><small>আজকের কাজ</small><strong id="taskStat">0/0</strong><span>সম্পন্ন</span></div>
+ <div class="stat"><small>এই মাসে সঞ্চয়</small><strong class="money" id="savingStat">৳0</strong><span>আয় − ব্যয়</span></div>
+ <div class="stat"><small>পড়াশোনা</small><strong id="studyStat">0m</strong><span>আজকের সময়</span></div>
+ <div class="stat"><small>ঘুম</small><strong id="sleepStat">—</strong><span>ঘণ্টা</span></div>
+</div>
+<nav class="tabs" id="tabs">
+ <button class="active" data-page="home">🏠 হোম</button><button data-page="daily">☑️ দৈনিক</button><button data-page="study">📚 পড়াশোনা</button><button data-page="prayer">🕌 নামাজ</button><button data-page="health">💚 স্বাস্থ্য</button><button data-page="finance">💰 টাকা</button><button data-page="shift">🕒 শিফট</button><button data-page="goals">🎯 লক্ষ্য</button><button data-page="career">🚀 দক্ষতা</button><button data-page="reports">📊 রিপোর্ট</button><button data-page="settings">⚙️ সেটিংস</button>
+</nav>
+<main>
+<section class="page active" id="page-home">
+ <h3 class="section-title">আজকের দ্রুত কাজ</h3>
+ <div class="quickgrid">
+  <button class="quick" data-go="daily"><span class="emoji">☑️</span><span><b>Daily Tracker</b><small>কাজ ও অভ্যাস</small></span></button>
+  <button class="quick" data-go="study"><span class="emoji">📚</span><span><b>Study & English</b><small>পড়ার সময়</small></span></button>
+  <button class="quick" data-go="prayer"><span class="emoji">🕌</span><span><b>Prayer</b><small>পাঁচ ওয়াক্ত</small></span></button>
+  <button class="quick" data-go="finance"><span class="emoji">💰</span><span><b>Finance</b><small>আয় ও ব্যয়</small></span></button>
+  <button class="quick" data-go="shift"><span class="emoji">🕒</span><span><b>Shift</b><small>ডে/নাইট</small></span></button>
+  <button class="quick" data-go="reports"><span class="emoji">📊</span><span><b>Reports</b><small>মাসিক ফলাফল</small></span></button>
+ </div>
+ <h3 class="section-title">আজকের রুটিন</h3>
+ <div class="panel"><div id="todayChecklist" class="list"></div></div>
+ <div class="two"><div class="panel"><h3>আজকের নোট</h3><textarea id="dailyNote" placeholder="আজ কী শিখলেন, কী ভালো হলো, কী উন্নতি করবেন?"></textarea><button class="btn" style="margin-top:9px" id="saveNote">নোট সংরক্ষণ</button></div><div class="panel"><h3>এই সপ্তাহের ফোকাস</h3><p class="muted" style="font-size:13px">১. অনার্সের পড়া নিয়মিত করা<br>২. প্রতিদিন ২০–৩০ মিনিট ইংরেজি<br>৩. খরচ লিখে রাখা<br>৪. পর্যাপ্ত ঘুম ও বিশ্রাম</p></div></div>
+</section>
+<section class="page" id="page-daily">
+ <h2 class="section-title">Daily Tracker</h2>
+ <div class="panel"><h3>আজকের অভ্যাস</h3><div id="habitChecks"></div></div>
+ <div class="panel"><h3>নতুন কাজ যোগ করুন</h3><div class="formgrid"><div class="field wide"><label>কাজের নাম</label><input id="taskName" placeholder="যেমন: রাষ্ট্রবিজ্ঞান ১ ঘণ্টা পড়া"></div><div class="field"><label>ক্যাটাগরি</label><select id="taskCat"><option>ব্যক্তিগত</option><option>অনার্স</option><option>ইংরেজি</option><option>দক্ষতা</option><option>ইবাদত</option><option>স্বাস্থ্য</option><option>অফিস</option></select></div><div class="field"><label>তারিখ</label><input id="taskDate" type="date"></div></div><button class="btn" id="addTask" style="margin-top:10px">কাজ যোগ করুন</button></div>
+ <div class="panel"><h3>কাজের তালিকা</h3><div id="taskList" class="list"></div></div>
+</section>
+<section class="page" id="page-study">
+ <h2 class="section-title">Study & English Tracker</h2>
+ <div class="panel"><h3>পড়াশোনার সেশন যোগ করুন</h3><div class="formgrid"><div class="field"><label>ধরন</label><select id="studyType"><option>অনার্স</option><option>English</option><option>Computer / Excel</option><option>AI / Digital Skill</option><option>অন্যান্য</option></select></div><div class="field"><label>বিষয় / টপিক</label><input id="studyTopic" placeholder="যেমন: লোক প্রশাসন"></div><div class="field"><label>সময় (মিনিট)</label><input id="studyMinutes" type="number" min="1" value="30"></div><div class="field"><label>তারিখ</label><input id="studyDate" type="date"></div><div class="field wide"><label>কী শিখলেন?</label><textarea id="studyNote" placeholder="সংক্ষিপ্ত নোট"></textarea></div></div><button class="btn" id="addStudy" style="margin-top:10px">সেশন সংরক্ষণ</button></div>
+ <div class="two"><div class="panel"><h3>আজকের পড়া</h3><strong id="todayStudyTotal">০ মিনিট</strong><p class="muted">অনার্স ও ইংরেজি মিলিয়ে</p></div><div class="panel"><h3>এই মাসের পড়া</h3><strong id="monthStudyTotal">০ ঘণ্টা</strong><p class="muted">সব শেখার সময়</p></div></div>
+ <div class="panel"><h3>সাম্প্রতিক সেশন</h3><div id="studyList" class="list"></div></div>
+</section>
+<section class="page" id="page-prayer">
+ <h2 class="section-title">Prayer Tracker</h2>
+ <div class="panel"><h3>আজকের পাঁচ ওয়াক্ত নামাজ</h3><div id="prayerChecks"></div><p class="muted" id="prayerSummary"></p></div>
+ <div class="notice">নামাজের সময় আপনার এলাকার সময়সূচি অনুযায়ী নিজে অনুসরণ করুন। অ্যাপটি নামাজের সময় নির্ধারণ করে না।</div>
+</section>
+<section class="page" id="page-health">
+ <h2 class="section-title">Health Tracker</h2>
+ <div class="panel"><h3>আজকের স্বাস্থ্য তথ্য</h3><div class="formgrid"><div class="field"><label>ঘুম (ঘণ্টা)</label><input id="sleepHours" type="number" min="0" max="24" step=".5" placeholder="যেমন 7"></div><div class="field"><label>পানি (গ্লাস)</label><input id="water" type="number" min="0" placeholder="যেমন 8"></div><div class="field"><label>ব্যায়াম (মিনিট)</label><input id="exercise" type="number" min="0" placeholder="যেমন 20"></div><div class="field"><label>মুড</label><select id="mood"><option>ভালো</option><option>মোটামুটি</option><option>ক্লান্ত</option><option>চাপ অনুভব করছি</option></select></div><div class="field wide"><label>স্বাস্থ্য নোট</label><textarea id="healthNote" placeholder="আজকের শারীরিক অবস্থা / বিশ্রাম"></textarea></div></div><button class="btn" id="saveHealth" style="margin-top:10px">স্বাস্থ্য তথ্য সংরক্ষণ</button></div>
+</section>
+<section class="page" id="page-finance">
+ <h2 class="section-title">Income & Expense Tracker</h2>
+ <div class="grid"><div class="stat"><small>এই মাসের আয়</small><strong id="incomeTotal">৳0</strong></div><div class="stat"><small>এই মাসের ব্যয়</small><strong id="expenseTotal">৳0</strong></div><div class="stat"><small>অবশিষ্ট</small><strong id="netTotal">৳0</strong></div><div class="stat"><small>সঞ্চয়ের হার</small><strong id="savingRate">0%</strong></div></div>
+ <div class="panel"><h3>লেনদেন যোগ করুন</h3><div class="formgrid"><div class="field"><label>ধরন</label><select id="moneyType"><option value="expense">খরচ</option><option value="income">আয়</option></select></div><div class="field"><label>পরিমাণ (৳)</label><input id="moneyAmount" type="number" min="1" placeholder="যেমন 500"></div><div class="field"><label>ক্যাটাগরি</label><select id="moneyCat"><option>বেতন</option><option>ব্যবসা/অতিরিক্ত আয়</option><option>অন্যান্য আয়</option><option>খাবার/বাজার</option><option>বাসা/ভাড়া</option><option>যাতায়াত</option><option>মোবাইল/ইন্টারনেট</option><option>শিক্ষা</option><option>চিকিৎসা</option><option>পরিবার/ব্যক্তিগত</option><option>সঞ্চয়</option><option>ঋণ/কিস্তি</option><option>অন্যান্য খরচ</option></select></div><div class="field"><label>তারিখ</label><input id="moneyDate" type="date"></div><div class="field wide"><label>বিবরণ</label><input id="moneyDesc" placeholder="ঐচ্ছিক"></div></div><button class="btn" id="addMoney" style="margin-top:10px">লেনদেন সংরক্ষণ</button></div>
+ <div class="panel"><h3>মাসিক বাজেট পরিকল্পনা</h3><div class="formgrid"><div class="field"><label>মাসিক আয় লক্ষ্য (৳)</label><input id="budgetIncome" type="number" value="18000"></div><div class="field"><label>সঞ্চয় লক্ষ্য (৳)</label><input id="budgetSaving" type="number" value="1500"></div></div><button class="btn secondary" id="saveBudget" style="margin-top:10px">বাজেট সংরক্ষণ</button><p class="muted" style="font-size:12px">প্রাথমিক পরিকল্পনা: আয় ৳১৫,০০০–২০,০০০। প্রকৃত খরচ অনুযায়ী বাজেট পরিবর্তন করুন।</p></div>
+ <div class="panel"><h3>লেনদেনের ইতিহাস</h3><div id="moneyList" class="list"></div></div>
+</section>
+<section class="page" id="page-shift">
+ <h2 class="section-title">Shift Management</h2>
+ <div class="panel"><h3>আপনার শিফট চক্র</h3><div class="formgrid"><div class="field"><label>চক্রের প্রথম দিন</label><input id="shiftStart" type="date"></div><div class="field"><label>প্রথম দিনের শিফট</label><select id="firstShift"><option value="day">ডে শিফট</option><option value="night">নাইট শিফট</option></select></div><div class="field"><label>ডে শিফট</label><input value="09:00 – 21:00" disabled></div><div class="field"><label>নাইট শিফট</label><input value="21:00 – 09:00" disabled></div></div><button class="btn" id="saveShift" style="margin-top:10px">শিফট সেটিংস সংরক্ষণ</button><p class="muted" style="font-size:12px">৬ দিন ডে + ৬ দিন নাইট—এই ১২ দিনের চক্র ধরে হিসাব হবে। শুরুর তারিখটি আপনার বাস্তব রোস্টারের সঙ্গে মিলিয়ে দিন।</p></div>
+ <div class="panel"><h3>পরবর্তী ১২ দিনের শিফট</h3><div id="shiftList" class="list"></div></div>
+</section>
+<section class="page" id="page-goals">
+ <h2 class="section-title">Goal & Habit Tracker</h2>
+ <div class="panel"><h3>নতুন লক্ষ্য</h3><div class="formgrid"><div class="field wide"><label>লক্ষ্যের নাম</label><input id="goalName" placeholder="যেমন: অনার্সের সেমিস্টার ভালোভাবে শেষ করা"></div><div class="field"><label>সময়সীমা</label><input id="goalDate" type="date"></div><div class="field"><label>অগ্রগতি (%)</label><input id="goalProgress" type="number" min="0" max="100" value="0"></div></div><button class="btn" id="addGoal" style="margin-top:10px">লক্ষ্য যোগ করুন</button></div>
+ <div class="panel"><h3>আমার লক্ষ্যসমূহ</h3><div id="goalList" class="list"></div></div>
+</section>
+<section class="page" id="page-career">
+ <h2 class="section-title">Career & Skill Tracker</h2>
+ <div class="panel"><h3>দক্ষতা অনুশীলন যোগ করুন</h3><div class="formgrid"><div class="field"><label>দক্ষতা</label><select id="skillName"><option>English Communication</option><option>MS Excel / Google Sheets</option><option>Computer Basics</option><option>AI & Digital Tools</option><option>Leadership / Supervisor Skill</option><option>CV & Interview</option><option>অন্যান্য</option></select></div><div class="field"><label>সময় (মিনিট)</label><input id="skillMinutes" type="number" min="1" value="30"></div><div class="field wide"><label>আজ কী অনুশীলন করলেন?</label><textarea id="skillNote"></textarea></div></div><button class="btn" id="addSkill" style="margin-top:10px">অনুশীলন সংরক্ষণ</button></div>
+ <div class="panel"><h3>দক্ষতা শেখার ইতিহাস</h3><div id="skillList" class="list"></div></div>
+ <div class="panel"><h3>ক্যারিয়ার প্রস্তুতির চেকলিস্ট</h3><div id="careerChecks"></div></div>
+</section>
+<section class="page" id="page-reports">
+ <h2 class="section-title">Monthly & Yearly Reports</h2>
+ <div class="panel"><h3>রিপোর্টের সময়কাল</h3><div class="formgrid"><div class="field"><label>মাস</label><input id="reportMonth" type="month"></div><div class="field"><label>বছর</label><input id="reportYear" type="number" min="2020" max="2100"></div></div><button class="btn" id="makeReport" style="margin-top:10px">রিপোর্ট দেখুন</button></div>
+ <div id="reportOutput" class="panel"></div>
+ <div class="panel"><h3>ডেটা রপ্তানি</h3><p class="muted" style="font-size:13px">Excel-এ খোলার উপযোগী CSV অথবা সম্পূর্ণ JSON ব্যাকআপ নিতে পারবেন।</p><div class="actions"><button class="btn secondary" id="exportCsv">Finance CSV</button><button class="btn secondary" id="exportJson">Full JSON Backup</button></div></div>
+</section>
+<section class="page" id="page-settings">
+ <h2 class="section-title">Settings & Data Safety</h2>
+ <div class="panel"><h3>ব্যক্তিগত সেটিংস</h3><div class="formgrid"><div class="field"><label>আপনার নাম/ডাকনাম</label><input id="userName" placeholder="যেমন: MS"></div><div class="field"><label>মাসিক আয় (৳)</label><input id="monthlyIncome" type="number" value="18000"></div></div><button class="btn" id="saveSettings" style="margin-top:10px">সেটিংস সংরক্ষণ</button></div>
+ <div class="panel"><h3>রিমাইন্ডার</h3><p class="muted" style="font-size:13px">অ্যাপ খোলা থাকলে নির্ধারিত সময়ের কাজের নোটিশ দেখানো যাবে। ব্রাউজারের Notification অনুমতি চালু করুন। বন্ধ থাকা অবস্থায় নির্ভরযোগ্য অ্যালার্মের জন্য সার্ভার-ভিত্তিক Push ব্যবস্থা প্রয়োজন।</p><div class="actions"><button class="btn" id="requestNotify">Notification চালু করুন</button></div></div>
+ <div class="panel"><h3>ব্যাকআপ ও রিস্টোর</h3><p class="muted" style="font-size:13px">ডেটা এই ফোনের ব্রাউজারে সংরক্ষিত থাকে। নিয়মিত JSON ব্যাকআপ ডাউনলোড করে Google Drive বা অন্য নিরাপদ স্থানে রাখুন।</p><div class="actions"><button class="btn secondary" id="settingsBackup">ব্যাকআপ ডাউনলোড</button><label class="btn ghost" for="restoreFile">ব্যাকআপ রিস্টোর</label><input id="restoreFile" type="file" accept="application/json" hidden></div><p class="muted" style="font-size:12px">ব্রাউজারের ডেটা মুছে গেলে বা অন্য ফোনে গেলে ব্যাকআপ ছাড়া তথ্য ফিরে পাওয়া যাবে না।</p></div>
+ <div class="panel"><h3>ডেটা মুছুন</h3><button class="btn ghost danger" id="clearData">এই অ্যাপের সব ডেটা মুছুন</button></div>
+</section>
+</main>
+<div class="footer">Life Tracker v2.0 · আপনার জীবন, আপনার অগ্রগতি</div>
+</div>
+<script>
+const KEY='life_tracker_v2_data';
+const today=()=>new Date().toLocaleDateString('en-CA');
+const monthNow=()=>today().slice(0,7);
+const fresh=()=>({tasks:[],study:[],money:[],goals:[],skills:[],health:{},prayers:{},habits:{},notes:{},settings:{name:'',monthlyIncome:18000,budgetIncome:18000,budgetSaving:1500,shiftStart:today(),firstShift:'day'},career:{'CV তৈরি':'false','LinkedIn/প্রোফাইল আপডেট':'false','ইন্টারভিউ অনুশীলন':'false','চাকরির বাজার গবেষণা':'false'}});
+let db=load();
+function load(){try{return {...fresh(),...JSON.parse(localStorage.getItem(KEY)||'{}')}}catch(e){return fresh()}}
+function save(){localStorage.setItem(KEY,JSON.stringify(db));render()}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function money(n){return '৳'+Number(n||0).toLocaleString('en-US')}
+function dateLabel(d){return new Date(d+'T12:00:00').toLocaleDateString('bn-BD',{day:'numeric',month:'short',year:'numeric'})}
+function download(name,content,type){let a=document.createElement('a');let u=URL.createObjectURL(new Blob([content],{type}));a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),1000)}
+function page(p){document.querySelectorAll('.page').forEach(x=>x.classList.toggle('active',x.id==='page-'+p));document.querySelectorAll('#tabs button').forEach(x=>x.classList.toggle('active',x.dataset.page===p));window.scrollTo({top:0,behavior:'smooth'})}
+document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>page(b.dataset.page));
+document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>page(b.dataset.go));
+function dayHabits(){return ['ফজর','যোহর','আসর','মাগরিব','ইশা','অনার্স পড়া','ইংরেজি ২০ মিনিট','ব্যায়াম/হাঁটা','আজকের খরচ লেখা','সময়মতো ঘুম'];}
+function currentShift(d=today()){let s=db.settings.shiftStart||today();let diff=Math.floor((new Date(d+'T12:00:00')-new Date(s+'T12:00:00'))/86400000);let n=((diff%12)+12)%12;let first=db.settings.firstShift||'day';return n<6?(first==='day'?'day':'night'):(first==='day'?'night':'day')}
+function taskDoneCount(){let a=db.tasks.filter(t=>t.date===today());return [a.filter(t=>t.done).length,a.length]}
+function setDefaults(){['taskDate','studyDate','moneyDate'].forEach(id=>document.getElementById(id).value=today());document.getElementById('reportMonth').value=monthNow();document.getElementById('reportYear').value=today().slice(0,4);document.getElementById('shiftStart').value=db.settings.shiftStart||today();document.getElementById('firstShift').value=db.settings.firstShift||'day';document.getElementById('userName').value=db.settings.name||'';document.getElementById('monthlyIncome').value=db.settings.monthlyIncome||18000;document.getElementById('budgetIncome').value=db.settings.budgetIncome||18000;document.getElementById('budgetSaving').value=db.settings.budgetSaving||1500;let h=db.health[today()]||{};['sleepHours','water','exercise','mood','healthNote'].forEach((id)=>{let k={sleepHours:'sleep',water:'water',exercise:'exercise',mood:'mood',healthNote:'note'}[id];document.getElementById(id).value=h[k]??''});document.getElementById('dailyNote').value=db.notes[today()]||''}
+function render(){
+ let shift=currentShift();document.getElementById('shiftBadge').textContent=shift==='day'?'☀️ ডে শিফট':'🌙 নাইট শিফট';
+ let name=db.settings.name?db.settings.name+' — ':'';document.getElementById('greeting').textContent=name+'আজকের দিনটি গুছিয়ে শুরু করুন';document.getElementById('todayText').textContent=dateLabel(today());
+ let [done,total]=taskDoneCount();let prayer=db.prayers[today()]||{};let habits=db.habits[today()]||{};let all=dayHabits().length;let checked=dayHabits().filter((x)=>x in prayer?prayer[x]:habits[x]).length;
+ let pct=Math.round((done+checked)/(total+all)*100)||0;document.getElementById('progressText').textContent=pct+'%';document.getElementById('progressBar').style.width=pct+'%';document.getElementById('taskStat').textContent=done+'/'+total;
+ let mon=monthNow(),mm=db.money.filter(x=>x.date.startsWith(mon));let inc=mm.filter(x=>x.type==='income').reduce((a,x)=>a+x.amount,0),exp=mm.filter(x=>x.type==='expense').reduce((a,x)=>a+x.amount,0);document.getElementById('savingStat').textContent=money(inc-exp);
+ let mins=db.study.filter(x=>x.date===today()).reduce((a,x)=>a+x.minutes,0);document.getElementById('studyStat').textContent=mins+'m';document.getElementById('sleepStat').textContent=db.health[today()]?.sleep??'—';
+ renderChecks();renderTasks();renderStudy();renderMoney();renderShifts();renderGoals();renderSkills();renderCareer();renderFinanceSummary();renderReport();
+}
+function renderChecks(){
+ let p=db.prayers[today()]||{},h=db.habits[today()]||{};let pr=['ফজর','যোহর','আসর','মাগরিব','ইশা'];document.getElementById('prayerChecks').innerHTML=pr.map(x=>`<label class="checkrow"><input type="checkbox" data-prayer="${x}" ${p[x]?'checked':''}><span>${x}</span><small>${p[x]?'সম্পন্ন':'বাকি'}</small></label>`).join('');document.querySelectorAll('[data-prayer]').forEach(x=>x.onchange=()=>{db.prayers[today()]={...(db.prayers[today()]||{}),[x.dataset.prayer]:x.checked};save()});
+ document.getElementById('prayerSummary').textContent=pr.filter(x=>p[x]).length+' / ৫ ওয়াক্ত সম্পন্ন';
+ let list=['অনার্স পড়া','ইংরেজি ২০ মিনিট','ব্যায়াম/হাঁটা','আজকের খরচ লেখা','সময়মতো ঘুম'];document.getElementById('habitChecks').innerHTML=list.map(x=>`<label class="checkrow"><input type="checkbox" data-habit="${x}" ${h[x]?'checked':''}><span>${x}</span></label>`).join('');document.querySelectorAll('[data-habit]').forEach(x=>x.onchange=()=>{db.habits[today()]={...(db.habits[today()]||{}),[x.dataset.habit]:x.checked};save()});
+ document.getElementById('todayChecklist').innerHTML=[...pr,...list].map(x=>{let yes=pr.includes(x)?p[x]:h[x];return `<div class="item"><span>${esc(x)}</span><span class="tag">${yes?'সম্পন্ন':'বাকি'}</span></div>`}).join('');
+}
+function renderTasks(){let a=db.tasks.slice().sort((x,y)=>x.date.localeCompare(y.date));document.getElementById('taskList').innerHTML=a.length?a.map(t=>`<div class="item"><div><label><input type="checkbox" data-task="${t.id}" ${t.done?'checked':''}> <b style="${t.done?'text-decoration:line-through;color:#7b8982':''}">${esc(t.name)}</b></label><small>${dateLabel(t.date)} · ${esc(t.cat)}</small></div><button class="iconbtn" data-del-task="${t.id}">✕</button></div>`).join(''):'<div class="empty">এখনও কোনো কাজ যোগ করা হয়নি।</div>';document.querySelectorAll('[data-task]').forEach(x=>x.onchange=()=>{let t=db.tasks.find(t=>t.id===x.dataset.task);if(t)t.done=x.checked;save()});document.querySelectorAll('[data-del-task]').forEach(x=>x.onclick=()=>{db.tasks=db.tasks.filter(t=>t.id!==x.dataset.delTask);save()})}
+function renderStudy(){let a=db.study.slice().sort((x,y)=>y.date.localeCompare(x.date));let todayM=a.filter(x=>x.date===today()).reduce((s,x)=>s+x.minutes,0),monthM=a.filter(x=>x.date.startsWith(monthNow())).reduce((s,x)=>s+x.minutes,0);document.getElementById('todayStudyTotal').textContent=todayM+' মিনিট';document.getElementById('monthStudyTotal').textContent=(monthM/60).toFixed(1)+' ঘণ্টা';document.getElementById('studyList').innerHTML=a.length?a.slice(0,25).map(x=>`<div class="item"><div><b>${esc(x.type)} · ${esc(x.topic)}</b><small>${dateLabel(x.date)} · ${x.minutes} মিনিট ${x.note?'· '+esc(x.note):''}</small></div><button class="iconbtn" data-del-study="${x.id}">✕</button></div>`).join(''):'<div class="empty">পড়ার সেশন যোগ করুন।</div>';document.querySelectorAll('[data-del-study]').forEach(x=>x.onclick=()=>{db.study=db.study.filter(t=>t.id!==x.dataset.delStudy);save()})}
+function renderMoney(){let a=db.money.slice().sort((x,y)=>y.date.localeCompare(x.date));document.getElementById('moneyList').innerHTML=a.length?a.slice(0,40).map(x=>`<div class="item"><div><b>${esc(x.cat)} · ${money(x.amount)}</b><small>${dateLabel(x.date)} ${x.desc?'· '+esc(x.desc):''}</small></div><div class="right"><span class="tag">${x.type==='income'?'আয়':'ব্যয়'}</span><button class="iconbtn" data-del-money="${x.id}">✕</button></div></div>`).join(''):'<div class="empty">কোনো লেনদেন নেই।</div>';document.querySelectorAll('[data-del-money]').forEach(x=>x.onclick=()=>{db.money=db.money.filter(t=>t.id!==x.dataset.delMoney);save()})}
+function renderFinanceSummary(){let a=db.money.filter(x=>x.date.startsWith(monthNow()));let i=a.filter(x=>x.type==='income').reduce((s,x)=>s+x.amount,0),e=a.filter(x=>x.type==='expense').reduce((s,x)=>s+x.amount,0),n=i-e;document.getElementById('incomeTotal').textContent=money(i);document.getElementById('expenseTotal').textContent=money(e);document.getElementById('netTotal').textContent=money(n);document.getElementById('savingRate').textContent=(i?Math.round(n/i*100):0)+'%'}
+function renderShifts(){let start=db.settings.shiftStart||today();let arr=[];for(let i=0;i<12;i++){let d=new Date(start+'T12:00:00');d.setDate(d.getDate()+i);let ds=d.toLocaleDateString('en-CA');let sh=currentShift(ds);arr.push(`<div class="item"><b>${dateLabel(ds)}</b><span class="tag">${sh==='day'?'☀️ ডে':'🌙 নাইট'}</span></div>`)}document.getElementById('shiftList').innerHTML=arr.join('')}
+function renderGoals(){let a=db.goals;document.getElementById('goalList').innerHTML=a.length?a.map(g=>`<div class="item"><div style="flex:1"><b>${esc(g.name)}</b><small>সময়সীমা: ${g.date?dateLabel(g.date):'নির্ধারিত নয়'} · ${g.progress}%</small><div class="progress" style="margin-top:7px"><i style="width:${g.progress}%"></i></div><input style="margin-top:8px" type="range" min="0" max="100" value="${g.progress}" data-goal="${g.id}"></div><button class="iconbtn" data-del-goal="${g.id}">✕</button></div>`).join(''):'<div class="empty">আপনার লক্ষ্য এখানে যোগ হবে।</div>';document.querySelectorAll('[data-goal]').forEach(x=>x.oninput=()=>{let g=db.goals.find(g=>g.id===x.dataset.goal);if(g)g.progress=+x.value;save()});document.querySelectorAll('[data-del-goal]').forEach(x=>x.onclick=()=>{db.goals=db.goals.filter(g=>g.id!==x.dataset.delGoal);save()})}
+function renderSkills(){let a=db.skills.slice().reverse();document.getElementById('skillList').innerHTML=a.length?a.slice(0,30).map(s=>`<div class="item"><div><b>${esc(s.name)} · ${s.minutes} মিনিট</b><small>${dateLabel(s.date)} ${s.note?'· '+esc(s.note):''}</small></div></div>`).join(''):'<div class="empty">দক্ষতা অনুশীলনের রেকর্ড নেই।</div>'}
+function renderCareer(){document.getElementById('careerChecks').innerHTML=Object.keys(db.career).map(k=>`<label class="checkrow"><input type="checkbox" data-career="${esc(k)}" ${db.career[k]==='true'?'checked':''}><span>${esc(k)}</span></label>`).join('');document.querySelectorAll('[data-career]').forEach(x=>x.onchange=()=>{db.career[x.dataset.career]=String(x.checked);save()})}
+function reportHTML(month){let m=db.money.filter(x=>x.date.startsWith(month)),inc=m.filter(x=>x.type==='income').reduce((s,x)=>s+x.amount,0),exp=m.filter(x=>x.type==='expense').reduce((s,x)=>s+x.amount,0),study=db.study.filter(x=>x.date.startsWith(month)).reduce((s,x)=>s+x.minutes,0),tasks=db.tasks.filter(x=>x.date.startsWith(month)),done=tasks.filter(x=>x.done).length,skills=db.skills.filter(x=>x.date.startsWith(month)).reduce((s,x)=>s+x.minutes,0);return `<div class="grid"><div class="stat"><small>আয়</small><strong>${money(inc)}</strong></div><div class="stat"><small>ব্যয়</small><strong>${money(exp)}</strong></div><div class="stat"><small>অবশিষ্ট</small><strong>${money(inc-exp)}</strong></div><div class="stat"><small>পড়াশোনা</small><strong>${(study/60).toFixed(1)}h</strong></div></div><p>কাজ সম্পন্ন: <b>${done}/${tasks.length}</b> · দক্ষতা অনুশীলন: <b>${skills} মিনিট</b></p><p>অনার্স/ইংরেজি/দক্ষতা মিলিয়ে মোট শেখার সময়: <b>${((study+skills)/60).toFixed(1)} ঘণ্টা</b></p>`}
+function renderReport(){let m=document.getElementById('reportMonth')?.value||monthNow(),y=document.getElementById('reportYear')?.value||today().slice(0,4);let yearly=db.money.filter(x=>x.date.startsWith(y)),yi=yearly.filter(x=>x.type==='income').reduce((s,x)=>s+x.amount,0),ye=yearly.filter(x=>x.type==='expense').reduce((s,x)=>s+x.amount,0),ys=db.study.filter(x=>x.date.startsWith(y)).reduce((s,x)=>s+x.minutes,0),yk=db.skills.filter(x=>x.date.startsWith(y)).reduce((s,x)=>s+x.minutes,0);document.getElementById('reportOutput').innerHTML='<h3>'+m+' মাসের সারাংশ</h3>'+reportHTML(m)+'<hr style="border:0;border-top:1px solid var(--line);margin:18px 0"><h3>'+y+' সালের সারাংশ</h3><div class="grid"><div class="stat"><small>বার্ষিক আয়</small><strong>'+money(yi)+'</strong></div><div class="stat"><small>বার্ষিক ব্যয়</small><strong>'+money(ye)+'</strong></div><div class="stat"><small>বার্ষিক অবশিষ্ট</small><strong>'+money(yi-ye)+'</strong></div><div class="stat"><small>শেখার সময়</small><strong>'+((ys+yk)/60).toFixed(1)+'h</strong></div></div><p>অনার্স/ইংরেজি/অন্যান্য পড়া: <b>'+(ys/60).toFixed(1)+' ঘণ্টা</b> · দক্ষতা অনুশীলন: <b>'+(yk/60).toFixed(1)+' ঘণ্টা</b></p>'}
+function add(id,obj){obj.id=crypto.randomUUID?crypto.randomUUID():String(Date.now()+Math.random());db[id].push(obj);save()}
+document.getElementById('addTask').onclick=()=>{let n=document.getElementById('taskName').value.trim();if(!n)return alert('কাজের নাম লিখুন');add('tasks',{name:n,cat:document.getElementById('taskCat').value,date:document.getElementById('taskDate').value||today(),done:false});document.getElementById('taskName').value=''};
+document.getElementById('addStudy').onclick=()=>{let n=document.getElementById('studyTopic').value.trim(),m=+document.getElementById('studyMinutes').value;if(!n||m<1)return alert('টপিক ও সময় দিন');add('study',{type:document.getElementById('studyType').value,topic:n,minutes:m,date:document.getElementById('studyDate').value||today(),note:document.getElementById('studyNote').value});document.getElementById('studyTopic').value='';document.getElementById('studyNote').value=''};
+document.getElementById('addMoney').onclick=()=>{let n=+document.getElementById('moneyAmount').value;if(n<=0)return alert('সঠিক পরিমাণ লিখুন');add('money',{type:document.getElementById('moneyType').value,amount:n,cat:document.getElementById('moneyCat').value,date:document.getElementById('moneyDate').value||today(),desc:document.getElementById('moneyDesc').value});document.getElementById('moneyAmount').value='';document.getElementById('moneyDesc').value=''};
+document.getElementById('saveHealth').onclick=()=>{db.health[today()]={sleep:document.getElementById('sleepHours').value,water:document.getElementById('water').value,exercise:document.getElementById('exercise').value,mood:document.getElementById('mood').value,note:document.getElementById('healthNote').value};save();alert('স্বাস্থ্য তথ্য সংরক্ষিত হয়েছে')};
+document.getElementById('saveNote').onclick=()=>{db.notes[today()]=document.getElementById('dailyNote').value;save();alert('নোট সংরক্ষিত হয়েছে')};
+document.getElementById('saveShift').onclick=()=>{db.settings.shiftStart=document.getElementById('shiftStart').value;db.settings.firstShift=document.getElementById('firstShift').value;save();alert('শিফট চক্র সংরক্ষিত হয়েছে')};
+document.getElementById('addGoal').onclick=()=>{let n=document.getElementById('goalName').value.trim();if(!n)return alert('লক্ষ্যের নাম লিখুন');add('goals',{name:n,date:document.getElementById('goalDate').value,progress:Math.min(100,Math.max(0,+document.getElementById('goalProgress').value||0))});document.getElementById('goalName').value=''};
+document.getElementById('addSkill').onclick=()=>{let m=+document.getElementById('skillMinutes').value;if(m<1)return alert('সময় দিন');add('skills',{name:document.getElementById('skillName').value,minutes:m,date:today(),note:document.getElementById('skillNote').value});document.getElementById('skillNote').value=''};
+document.getElementById('saveBudget').onclick=()=>{db.settings.budgetIncome=+document.getElementById('budgetIncome').value;db.settings.budgetSaving=+document.getElementById('budgetSaving').value;save();alert('বাজেট সংরক্ষিত হয়েছে')};
+document.getElementById('saveSettings').onclick=()=>{db.settings.name=document.getElementById('userName').value;db.settings.monthlyIncome=+document.getElementById('monthlyIncome').value;save();alert('সেটিংস সংরক্ষিত হয়েছে')};
+document.getElementById('makeReport').onclick=renderReport;
+function exportJSON(){download('life-tracker-backup-'+today()+'.json',JSON.stringify(db,null,2),'application/json')}
+document.getElementById('exportJson').onclick=exportJSON;document.getElementById('backupBtn').onclick=exportJSON;document.getElementById('settingsBackup').onclick=exportJSON;
+document.getElementById('restoreFile').onchange=async e=>{let f=e.target.files[0];if(!f)return;try{let x=JSON.parse(await f.text());if(!confirm('বর্তমান ডেটার জায়গায় ব্যাকআপের ডেটা বসবে। চালিয়ে যাবেন?'))return;db={...fresh(),...x};save();setDefaults();alert('ব্যাকআপ রিস্টোর হয়েছে')}catch(err){alert('ফাইলটি সঠিক Life Tracker ব্যাকআপ নয়')}e.target.value=''};
+document.getElementById('exportCsv').onclick=()=>{let rows=[['Date','Type','Category','Amount_BDT','Description'],...db.money.map(x=>[x.date,x.type,x.cat,x.amount,x.desc||''])];let csv=rows.map(r=>r.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\n');download('life-tracker-finance-'+today()+'.csv','\ufeff'+csv,'text/csv;charset=utf-8')};
+document.getElementById('clearData').onclick=()=>{if(confirm('এই অ্যাপের সব ডেটা স্থায়ীভাবে মুছে যাবে। আগে ব্যাকআপ নিয়েছেন?')&&confirm('নিশ্চিতভাবে মুছবেন?')){localStorage.removeItem(KEY);db=fresh();setDefaults();save()}};
+async function enableNotify(){if(!('Notification'in window)){alert('এই ব্রাউজারে Notification সমর্থিত নয়');return}let p=await Notification.requestPermission();alert(p==='granted'?'Notification অনুমতি চালু হয়েছে':'অনুমতি দেওয়া হয়নি')}
+document.getElementById('notifyBtn').onclick=enableNotify;document.getElementById('requestNotify').onclick=enableNotify;
+function reminderCheck(){if(!('Notification'in window)||Notification.permission!=='granted')return;let now=new Date(),hh=now.getHours(),mm=now.getMinutes();if(mm===0&&hh===7)new Notification('Life Tracker',{body:'আজকের অনার্স পড়ার সেশন শুরু করুন'});if(mm===0&&hh===19)new Notification('Life Tracker',{body:'আজকের ইংরেজি অনুশীলনটি করুন'})}
+setDefaults();render();setInterval(reminderCheck,60000);
+if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(()=>{}));
+</script>
+</body></html>
