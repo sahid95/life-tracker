@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#10251f">
 <meta name="description" content="Personal Life Management System">
+<meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), usb=(), bluetooth=(), midi=(), payment=()">
 <link rel="manifest" href="manifest.json">
 <title>Life Tracker — Build Better Habits</title>
 <style>
@@ -12,10 +13,62 @@
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Noto Sans Bengali",sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}.app{max-width:1100px;margin:auto;padding:16px 14px 90px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:8px 0 18px}.brand{display:flex;align-items:center;gap:10px}.logo{width:44px;height:44px;border-radius:14px;background:var(--ink);color:white;display:grid;place-items:center;font-weight:800}.brand h1{font-size:19px;margin:0}.brand small{color:var(--muted)}.top-actions{display:flex;gap:8px}.btn,.iconbtn{border:0;border-radius:12px;padding:10px 13px;background:var(--brand);color:white;font-weight:650}.btn.secondary{background:var(--brand2);color:var(--brand)}.btn.ghost{background:#edf1ee;color:var(--ink)}.iconbtn{padding:9px;background:#edf1ee;color:var(--ink)}.hero{background:linear-gradient(120deg,#10251f,#176b50);color:white;border-radius:22px;padding:20px;margin-bottom:15px;box-shadow:var(--shadow)}.hero h2{margin:0 0 5px;font-size:22px}.hero p{margin:0;color:#d5e9df}.hero-row{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}.shift-pill{background:#ffffff20;border:1px solid #ffffff30;border-radius:30px;padding:8px 12px;font-size:13px}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:14px 0}.stat,.panel,.module{background:var(--panel);border:1px solid var(--line);border-radius:17px;padding:15px;box-shadow:var(--shadow)}.stat small{color:var(--muted)}.stat strong{display:block;font-size:24px;margin-top:5px}.stat span{font-size:12px;color:var(--muted)}.section-title{font-size:17px;margin:22px 0 10px}.quickgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.quick{display:flex;align-items:center;gap:10px;text-align:left;background:white;border:1px solid var(--line);border-radius:15px;padding:13px;color:var(--ink)}.quick b{display:block;font-size:14px}.quick small{color:var(--muted)}.emoji{font-size:22px}.tabs{display:flex;gap:7px;overflow:auto;padding:4px 1px 12px;scrollbar-width:none;position:sticky;top:0;background:var(--bg);z-index:5}.tabs button{white-space:nowrap;border:1px solid var(--line);background:white;color:var(--muted);border-radius:30px;padding:9px 13px}.tabs button.active{background:var(--ink);color:white;border-color:var(--ink)}.page{display:none}.page.active{display:block}.panel{margin:12px 0}.panel h3{margin:0 0 12px;font-size:16px}.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.field{display:flex;flex-direction:column;gap:5px}.field label{font-size:13px;color:var(--muted)}input,select,textarea{width:100%;border:1px solid var(--line);border-radius:11px;padding:10px 11px;background:#fbfdfb;color:var(--ink);min-width:0}textarea{min-height:74px;resize:vertical}.wide{grid-column:1/-1}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.list{display:flex;flex-direction:column;gap:8px}.item{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;border:1px solid var(--line);border-radius:12px;padding:11px}.item small{display:block;color:var(--muted);margin-top:3px}.item .right{display:flex;gap:6px;align-items:center}.tag{font-size:11px;background:var(--brand2);color:var(--brand);border-radius:20px;padding:4px 8px}.empty{color:var(--muted);font-size:13px;padding:12px;text-align:center}.checkrow{display:flex;align-items:center;gap:9px;padding:9px 0;border-bottom:1px solid var(--line)}.checkrow input{width:19px;height:19px;accent-color:var(--brand)}.checkrow span{flex:1}.progress{height:9px;background:#e9efeb;border-radius:20px;overflow:hidden}.progress i{display:block;height:100%;background:var(--brand);width:0}.muted{color:var(--muted)}.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}.money{font-variant-numeric:tabular-nums}.danger{color:var(--danger)}.footer{text-align:center;color:var(--muted);font-size:12px;margin-top:28px}.notice{background:#fff7e5;border:1px solid #f2dfac;color:#72551a;padding:11px;border-radius:12px;font-size:13px;margin:10px 0}
 @media(max-width:700px){.grid{grid-template-columns:repeat(2,1fr)}.quickgrid{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}.app{padding:12px 11px 90px}.hero{padding:17px}.brand h1{font-size:17px}}
 @media(max-width:390px){.formgrid{grid-template-columns:1fr}.wide{grid-column:auto}.quick{padding:10px}.stat strong{font-size:21px}}
+
+.lock-screen{position:fixed;inset:0;z-index:9999;background:linear-gradient(145deg,#10251f,#176b50);display:flex;align-items:center;justify-content:center;padding:20px}.lock-card{width:min(100%,420px);background:#fff;border-radius:22px;padding:24px;box-shadow:0 20px 70px #0005;color:#172a24}.lock-card h2{margin:0 0 8px}.lock-card p{color:#687970;font-size:14px;line-height:1.6}.lock-card input{margin:7px 0 12px;font-size:20px;letter-spacing:5px;text-align:center}.lock-card .btn{width:100%}.lock-error{color:#b64242;min-height:22px;font-size:13px}.security-note{font-size:12px;color:#687970;margin-top:12px}
+
+/* Life Tracker v2.2 Premium UI */
+:root{--bg:#f4f7fb;--panel:#ffffff;--ink:#172338;--muted:#68778d;--line:#e5eaf2;--brand:#5b5ce2;--brand2:#eeefff;--shadow:0 12px 34px rgba(31,45,82,.07);--radius:20px;--font-scale:1}
+body{font-size:calc(15px * var(--font-scale));background:radial-gradient(ellipse at 12% 0%,color-mix(in srgb,var(--brand) 8%,transparent),transparent 32%),var(--bg);transition:background .25s,color .25s}
+.app{max-width:1180px;padding:22px 18px 100px}
+.top{margin:5px 0 22px}.logo{background:linear-gradient(135deg,var(--brand),color-mix(in srgb,var(--brand) 58%,#111827));box-shadow:0 8px 18px color-mix(in srgb,var(--brand) 25%,transparent)}
+.brand h1{letter-spacing:-.5px;font-size:21px}.brand small{font-size:12px}
+.hero{border-radius:26px;padding:26px;background:linear-gradient(120deg,#151d3b 0%,color-mix(in srgb,var(--brand) 88%,#101827) 100%);box-shadow:0 18px 40px rgba(33,40,90,.18)}
+.hero h2{font-size:clamp(22px,4vw,30px);letter-spacing:-.6px}.hero p{opacity:.86}
+.stat,.panel,.module{border-radius:var(--radius);box-shadow:var(--shadow);border-color:var(--line)}
+.stat{padding:18px;transition:transform .18s,box-shadow .18s}.stat:hover,.quick:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(31,45,82,.1)}
+.stat strong{font-size:clamp(22px,3vw,29px);letter-spacing:-.8px}
+.tabs{padding:8px 6px 13px;border-radius:16px;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(12px)}
+.tabs button{background:var(--panel);border-color:var(--line);font-weight:650;padding:10px 15px;transition:.18s}
+.tabs button.active{background:var(--brand);border-color:var(--brand);box-shadow:0 7px 16px color-mix(in srgb,var(--brand) 22%,transparent)}
+.quick{background:var(--panel);border-radius:17px;padding:15px;transition:.18s}
+.quick .emoji{width:42px;height:42px;display:grid;place-items:center;border-radius:14px;background:var(--brand2)}
+.panel{padding:19px}.panel h3{letter-spacing:-.2px}
+.btn,.iconbtn{border-radius:13px;transition:filter .15s,transform .15s}.btn{background:var(--brand);box-shadow:0 5px 14px color-mix(in srgb,var(--brand) 18%,transparent)}
+.btn:hover,.iconbtn:hover{filter:brightness(1.04);transform:translateY(-1px)}
+.btn.secondary{background:var(--brand2);color:var(--brand);box-shadow:none}
+.btn.ghost,.iconbtn{background:color-mix(in srgb,var(--panel) 78%,var(--bg));color:var(--ink);border:1px solid var(--line);box-shadow:none}
+input,select,textarea{border-radius:13px;background:var(--panel);border-color:var(--line);padding:12px}
+input:focus,select:focus,textarea:focus{outline:3px solid color-mix(in srgb,var(--brand) 17%,transparent);border-color:var(--brand)}
+.item{border-radius:14px;border-color:var(--line);background:color-mix(in srgb,var(--panel) 94%,var(--bg))}
+.progress{background:color-mix(in srgb,var(--brand) 12%,var(--bg))}.progress i{background:linear-gradient(90deg,var(--brand),color-mix(in srgb,var(--brand) 55%,#69d7b0))}
+.tag{background:var(--brand2);color:var(--brand);font-weight:700}
+.settings-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.setting-tile{border:1px solid var(--line);border-radius:16px;padding:14px;background:var(--panel)}
+.setting-tile label{display:block;font-size:13px;font-weight:700;color:var(--muted);margin-bottom:8px}
+.swatches{display:flex;gap:9px;flex-wrap:wrap}.swatch{width:31px;height:31px;border-radius:50%;border:3px solid var(--panel);outline:1px solid var(--line);padding:0}
+.swatch[aria-pressed=true]{outline:3px solid var(--ink)}
+body[data-theme="dark"]{--bg:#0c1220;--panel:#151e30;--ink:#e8eef9;--muted:#9ba9bf;--line:#27344a;--brand2:#25294a;--shadow:0 14px 36px rgba(0,0,0,.22);color-scheme:dark}
+body[data-theme="dark"] .hero{background:linear-gradient(120deg,#10182c 0%,color-mix(in srgb,var(--brand) 50%,#101827) 100%)}
+body[data-theme="dark"] .tabs{background:rgba(12,18,32,.9)}
+body[data-theme="dark"] .tabs button{background:var(--panel);color:var(--muted)}
+body[data-theme="dark"] .tabs button.active{background:var(--brand);color:white}
+body[data-theme="dark"] .quick,body[data-theme="dark"] input,body[data-theme="dark"] select,body[data-theme="dark"] textarea{background:var(--panel);color:var(--ink)}
+body[data-theme="dark"] .btn.ghost,body[data-theme="dark"] .iconbtn{background:#202b40;color:var(--ink)}
+body[data-theme="dark"] .notice{background:#382f1b;color:#f4dfaa;border-color:#66552a}
+body[data-theme="dark"] .lock-screen{background:linear-gradient(145deg,#080d18,#20294b)}
+body[data-theme="dark"] .lock-card{background:#151e30;color:#e8eef9}
+body[data-theme="dark"] .lock-card p,body[data-theme="dark"] .security-note{color:#9ba9bf}
+body[data-theme="dark"] .lock-card input{background:#0c1220;color:#e8eef9}
+body[data-density="compact"] .panel{padding:13px}body[data-density="compact"] .stat{padding:12px}body[data-density="compact"] .grid{gap:8px}body[data-density="compact"] .item{padding:8px}
+@media(max-width:700px){.app{padding:12px 12px 100px}.top{align-items:flex-start}.hero{padding:20px;border-radius:22px}.tabs{margin:0 -2px}.settings-grid{grid-template-columns:1fr}.panel{padding:15px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+
 </style>
 </head>
 <body>
-<div class="app">
+<div class="lock-screen" id="lockScreen"><div class="lock-card"><div class="logo" style="margin-bottom:14px">LT</div><h2 id="lockTitle">Life Tracker নিরাপত্তা</h2><p id="lockMessage">আপনার ব্যক্তিগত তথ্য এনক্রিপ্টেড থাকবে। চালিয়ে যেতে PIN দিন।</p><label id="pinLabel" for="pinInput">৬ সংখ্যার PIN</label><input id="pinInput" type="password" inputmode="numeric" maxlength="6" autocomplete="off" placeholder="••••••"><div id="confirmPinWrap" style="display:none"><label for="confirmPin">PIN আবার লিখুন</label><input id="confirmPin" type="password" inputmode="numeric" maxlength="6" autocomplete="off" placeholder="••••••"></div><div class="lock-error" id="lockError"></div><button class="btn" id="unlockBtn">আনলক করুন</button><p class="security-note">PIN ভুলে গেলে এই ডিভাইসের এনক্রিপ্টেড ডেটা উদ্ধার করা যাবে না। নিরাপদ Backup রাখুন।</p></div></div>
+<div class="app" id="mainApp" style="display:none">
+<div class="notice" role="note"><b>গোপনীয়তা:</b> এই অ্যাপ আপনার ক্যামেরা, মাইক্রোফোন, অবস্থান, Contacts বা ফোনের ফাইল নিজে থেকে অ্যাক্সেস করে না। শুধু আপনি নিজে Backup Restore চাপলে নির্বাচিত JSON ফাইলটি পড়া হয়। আপনার ট্র্যাকিং ডেটা এই ব্রাউজারের ডিভাইস-স্টোরেজে এনক্রিপ্টেড থাকে; এই অ্যাপে কোনো Analytics বা তৃতীয়-পক্ষ ট্র্যাকিং যুক্ত নেই।</div>
 <header class="top">
  <div class="brand"><div class="logo">LT</div><div><h1>Life Tracker</h1><small>Build Better Habits Every Day</small></div></div>
  <div class="top-actions"><button class="iconbtn" id="notifyBtn" title="Notifications">🔔</button><button class="iconbtn" id="backupBtn" title="Backup">⬇️</button></div>
@@ -96,26 +149,48 @@
  <h2 class="section-title">Monthly & Yearly Reports</h2>
  <div class="panel"><h3>রিপোর্টের সময়কাল</h3><div class="formgrid"><div class="field"><label>মাস</label><input id="reportMonth" type="month"></div><div class="field"><label>বছর</label><input id="reportYear" type="number" min="2020" max="2100"></div></div><button class="btn" id="makeReport" style="margin-top:10px">রিপোর্ট দেখুন</button></div>
  <div id="reportOutput" class="panel"></div>
- <div class="panel"><h3>ডেটা রপ্তানি</h3><p class="muted" style="font-size:13px">Excel-এ খোলার উপযোগী CSV অথবা সম্পূর্ণ JSON ব্যাকআপ নিতে পারবেন।</p><div class="actions"><button class="btn secondary" id="exportCsv">Finance CSV</button><button class="btn secondary" id="exportJson">Full JSON Backup</button></div></div>
+ <div class="panel"><h3>ডেটা রপ্তানি</h3><p class="muted" style="font-size:13px">Finance CSV সাধারণ ফাইল; সম্পূর্ণ ডেটার জন্য Encrypted Backup ব্যবহার করুন।</p><div class="actions"><button class="btn secondary" id="exportCsv">Finance CSV</button><button class="btn secondary" id="exportJson">Encrypted Backup</button></div></div>
 </section>
 <section class="page" id="page-settings">
  <h2 class="section-title">Settings & Data Safety</h2>
+ <div class="panel"><h3>Appearance & Personalization</h3>
+ <div class="settings-grid">
+  <div class="setting-tile"><label for="themeMode">থিম / Theme</label><select id="themeMode"><option value="light">Day / Light</option><option value="dark">Night / Dark</option><option value="system">System Default</option></select></div>
+  <div class="setting-tile"><label for="languageMode">ভাষা / Language</label><select id="languageMode"><option value="bn">বাংলা</option><option value="en">English (core navigation)</option></select></div>
+  <div class="setting-tile"><label>Accent Color</label><div class="swatches"><button class="swatch" data-accent="#5b5ce2" style="background:#5b5ce2" aria-label="Indigo"></button><button class="swatch" data-accent="#16866b" style="background:#16866b" aria-label="Emerald"></button><button class="swatch" data-accent="#d06b35" style="background:#d06b35" aria-label="Amber"></button><button class="swatch" data-accent="#c34f82" style="background:#c34f82" aria-label="Rose"></button><button class="swatch" data-accent="#2879c7" style="background:#2879c7" aria-label="Blue"></button></div></div>
+  <div class="setting-tile"><label for="densityMode">Layout Density</label><select id="densityMode"><option value="comfortable">Comfortable</option><option value="compact">Compact</option></select></div>
+  <div class="setting-tile"><label for="fontScale">Font Size</label><input id="fontScale" type="range" min="0.9" max="1.15" step="0.05" value="1"><small id="fontScaleLabel" class="muted">100%</small></div>
+ </div><div class="actions"><button class="btn" id="saveAppearance">Save Appearance</button><button class="btn ghost" id="resetAppearance">Reset</button></div>
+ <p class="muted" style="font-size:12px;margin-bottom:0">আপনার পছন্দগুলো এনক্রিপ্টেড অ্যাপ ডেটার সঙ্গে এই ডিভাইসে সংরক্ষিত হবে।</p>
+ </div>
  <div class="panel"><h3>ব্যক্তিগত সেটিংস</h3><div class="formgrid"><div class="field"><label>আপনার নাম/ডাকনাম</label><input id="userName" placeholder="যেমন: MS"></div><div class="field"><label>মাসিক আয় (৳)</label><input id="monthlyIncome" type="number" value="18000"></div></div><button class="btn" id="saveSettings" style="margin-top:10px">সেটিংস সংরক্ষণ</button></div>
  <div class="panel"><h3>রিমাইন্ডার</h3><p class="muted" style="font-size:13px">অ্যাপ খোলা থাকলে নির্ধারিত সময়ের কাজের নোটিশ দেখানো যাবে। ব্রাউজারের Notification অনুমতি চালু করুন। বন্ধ থাকা অবস্থায় নির্ভরযোগ্য অ্যালার্মের জন্য সার্ভার-ভিত্তিক Push ব্যবস্থা প্রয়োজন।</p><div class="actions"><button class="btn" id="requestNotify">Notification চালু করুন</button></div></div>
- <div class="panel"><h3>ব্যাকআপ ও রিস্টোর</h3><p class="muted" style="font-size:13px">ডেটা এই ফোনের ব্রাউজারে সংরক্ষিত থাকে। নিয়মিত JSON ব্যাকআপ ডাউনলোড করে Google Drive বা অন্য নিরাপদ স্থানে রাখুন।</p><div class="actions"><button class="btn secondary" id="settingsBackup">ব্যাকআপ ডাউনলোড</button><label class="btn ghost" for="restoreFile">ব্যাকআপ রিস্টোর</label><input id="restoreFile" type="file" accept="application/json" hidden></div><p class="muted" style="font-size:12px">ব্রাউজারের ডেটা মুছে গেলে বা অন্য ফোনে গেলে ব্যাকআপ ছাড়া তথ্য ফিরে পাওয়া যাবে না।</p></div>
+ <div class="panel"><h3>ব্যাকআপ ও রিস্টোর</h3><p class="muted" style="font-size:13px">ডেটা এই ফোনে এনক্রিপ্টেড অবস্থায় থাকে। Backup-ও আলাদা পাসওয়ার্ড দিয়ে এনক্রিপ্ট করে ডাউনলোড হবে।</p><div class="actions"><button class="btn secondary" id="settingsBackup">ব্যাকআপ ডাউনলোড</button><label class="btn ghost" for="restoreFile">ব্যাকআপ রিস্টোর</label><input id="restoreFile" type="file" accept="application/json" hidden></div><p class="muted" style="font-size:12px">ব্রাউজারের ডেটা মুছে গেলে বা অন্য ফোনে গেলে ব্যাকআপ ছাড়া তথ্য ফিরে পাওয়া যাবে না।</p></div>
  <div class="panel"><h3>ডেটা মুছুন</h3><button class="btn ghost danger" id="clearData">এই অ্যাপের সব ডেটা মুছুন</button></div>
 </section>
 </main>
-<div class="footer">Life Tracker v2.0 · আপনার জীবন, আপনার অগ্রগতি</div>
+<div class="footer">Life Tracker v2.1 Secure · আপনার তথ্য, আপনার নিয়ন্ত্রণ</div>
 </div>
 <script>
 const KEY='life_tracker_v2_data';
+const VAULT_VERSION=1, PBKDF2_ITERATIONS=310000;
+let db=null, vaultKey=null, saveQueue=Promise.resolve(), setupMode=false;
+const enc=new TextEncoder(), dec=new TextDecoder();
+function b64(bytes){let bin='';bytes.forEach(b=>bin+=String.fromCharCode(b));return btoa(bin)}
+function unb64(str){return Uint8Array.from(atob(str),c=>c.charCodeAt(0))}
+async function deriveKey(secret,salt){const material=await crypto.subtle.importKey('raw',enc.encode(secret),'PBKDF2',false,['deriveKey']);return crypto.subtle.deriveKey({name:'PBKDF2',salt,iterations:PBKDF2_ITERATIONS,hash:'SHA-256'},material,{name:'AES-GCM',length:256},false,['encrypt','decrypt'])}
+async function encryptText(text,key){const iv=crypto.getRandomValues(new Uint8Array(12));const cipher=await crypto.subtle.encrypt({name:'AES-GCM',iv},key,enc.encode(text));return {iv:b64(iv),data:b64(new Uint8Array(cipher))}}
+async function decryptText(payload,key){const plain=await crypto.subtle.decrypt({name:'AES-GCM',iv:unb64(payload.iv)},key,unb64(payload.data));return dec.decode(plain)}
+function validPin(v){return /^\d{6}$/.test(v)}
+function showLock(setup){setupMode=setup;document.getElementById('lockScreen').style.display='flex';document.getElementById('mainApp').style.display='none';document.getElementById('lockTitle').textContent=setup?'নতুন PIN তৈরি করুন':'Life Tracker আনলক করুন';document.getElementById('lockMessage').textContent=setup?'আপনার ডেটা সুরক্ষিত করতে একটি ৬ সংখ্যার PIN তৈরি করুন।':'আপনার এনক্রিপ্টেড ব্যক্তিগত তথ্য খুলতে PIN দিন।';document.getElementById('confirmPinWrap').style.display=setup?'block':'none';document.getElementById('unlockBtn').textContent=setup?'PIN তৈরি ও সুরক্ষা চালু করুন':'আনলক করুন';document.getElementById('pinInput').value='';document.getElementById('confirmPin').value='';document.getElementById('lockError').textContent='';}
+function showApp(){document.getElementById('lockScreen').style.display='none';document.getElementById('mainApp').style.display='block';setDefaults();applyAppearance();render()}
+async function boot(){if(!window.crypto?.subtle){document.getElementById('lockMessage').textContent='এই ব্রাউজারে নিরাপদ এনক্রিপশন চালু নেই। Chrome-এর HTTPS GitHub Pages লিংক ব্যবহার করুন।';return}let raw=localStorage.getItem(KEY);if(!raw){showLock(true);return}try{let obj=JSON.parse(raw);if(obj&&obj.v===VAULT_VERSION&&obj.ciphertext){showLock(false)}else{db={...fresh(),...obj};showLock(true);document.getElementById('lockMessage').textContent='পুরোনো ডেটা পাওয়া গেছে। নতুন PIN তৈরি করলে সেটি এনক্রিপ্ট করে সংরক্ষণ করা হবে।'}}catch(e){showLock(true);document.getElementById('lockError').textContent='পুরোনো ডেটা পড়া যায়নি। আগে Backup থাকলে সেটি Restore করুন।'}}
+document.getElementById('unlockBtn').onclick=async()=>{const pin=document.getElementById('pinInput').value;const err=document.getElementById('lockError');err.textContent='';if(!validPin(pin)){err.textContent='৬ সংখ্যার PIN লিখুন।';return}try{if(setupMode){const confirmPin=document.getElementById('confirmPin').value;if(pin!==confirmPin){err.textContent='দুটি PIN মিলছে না।';return}if(!db)db=fresh();const salt=crypto.getRandomValues(new Uint8Array(16));vaultKey=await deriveKey(pin,salt);const encrypted=await encryptText(JSON.stringify(db),vaultKey);localStorage.setItem(KEY,JSON.stringify({v:VAULT_VERSION,salt:b64(salt),iv:encrypted.iv,ciphertext:encrypted.data,iterations:PBKDF2_ITERATIONS}));showApp();alert('PIN Lock ও Encryption চালু হয়েছে। এখন থেকে তথ্য এনক্রিপ্টেড থাকবে।')}else{const vault=JSON.parse(localStorage.getItem(KEY));vaultKey=await deriveKey(pin,unb64(vault.salt));const plain=await decryptText({iv:vault.iv,data:vault.ciphertext},vaultKey);db={...fresh(),...JSON.parse(plain)};showApp()}}catch(e){vaultKey=null;err.textContent=setupMode?'সুরক্ষা চালু করা যায়নি। আবার চেষ্টা করুন।':'ভুল PIN অথবা ডেটা ক্ষতিগ্রস্ত হয়েছে।'}};
+
 const today=()=>new Date().toLocaleDateString('en-CA');
 const monthNow=()=>today().slice(0,7);
-const fresh=()=>({tasks:[],study:[],money:[],goals:[],skills:[],health:{},prayers:{},habits:{},notes:{},settings:{name:'',monthlyIncome:18000,budgetIncome:18000,budgetSaving:1500,shiftStart:today(),firstShift:'day'},career:{'CV তৈরি':'false','LinkedIn/প্রোফাইল আপডেট':'false','ইন্টারভিউ অনুশীলন':'false','চাকরির বাজার গবেষণা':'false'}});
-let db=load();
-function load(){try{return {...fresh(),...JSON.parse(localStorage.getItem(KEY)||'{}')}}catch(e){return fresh()}}
-function save(){localStorage.setItem(KEY,JSON.stringify(db));render()}
+const fresh=()=>({tasks:[],study:[],money:[],goals:[],skills:[],health:{},prayers:{},habits:{},notes:{},settings:{name:'',monthlyIncome:18000,budgetIncome:18000,budgetSaving:1500,shiftStart:today(),firstShift:'day',theme:'light',language:'bn',accent:'#5b5ce2',density:'comfortable',fontScale:1},career:{'CV তৈরি':'false','LinkedIn/প্রোফাইল আপডেট':'false','ইন্টারভিউ অনুশীলন':'false','চাকরির বাজার গবেষণা':'false'}});
+function save(){if(!db||!vaultKey)return;const snapshot=JSON.stringify(db);saveQueue=saveQueue.then(async()=>{const encrypted=await encryptText(snapshot,vaultKey);const old=JSON.parse(localStorage.getItem(KEY)||'{}');localStorage.setItem(KEY,JSON.stringify({v:VAULT_VERSION,salt:old.salt,iv:encrypted.iv,ciphertext:encrypted.data,iterations:PBKDF2_ITERATIONS}))}).catch(e=>alert('ডেটা এনক্রিপ্ট করে সংরক্ষণ করা যায়নি। Backup নিন।'));render();return saveQueue}
 function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function money(n){return '৳'+Number(n||0).toLocaleString('en-US')}
 function dateLabel(d){return new Date(d+'T12:00:00').toLocaleDateString('bn-BD',{day:'numeric',month:'short',year:'numeric'})}
@@ -164,15 +239,49 @@ document.getElementById('addSkill').onclick=()=>{let m=+document.getElementById(
 document.getElementById('saveBudget').onclick=()=>{db.settings.budgetIncome=+document.getElementById('budgetIncome').value;db.settings.budgetSaving=+document.getElementById('budgetSaving').value;save();alert('বাজেট সংরক্ষিত হয়েছে')};
 document.getElementById('saveSettings').onclick=()=>{db.settings.name=document.getElementById('userName').value;db.settings.monthlyIncome=+document.getElementById('monthlyIncome').value;save();alert('সেটিংস সংরক্ষিত হয়েছে')};
 document.getElementById('makeReport').onclick=renderReport;
-function exportJSON(){download('life-tracker-backup-'+today()+'.json',JSON.stringify(db,null,2),'application/json')}
+async function exportJSON(){try{const password=prompt('Encrypted Backup-এর জন্য একটি শক্তিশালী পাসওয়ার্ড দিন (কমপক্ষে ১০ অক্ষর)। PIN-এর থেকে আলাদা পাসওয়ার্ড ব্যবহার করুন।');if(!password)return;if(password.length<10)return alert('Backup পাসওয়ার্ড কমপক্ষে ১০ অক্ষরের হতে হবে।');const salt=crypto.getRandomValues(new Uint8Array(16)),key=await deriveKey(password,salt),payload=await encryptText(JSON.stringify(db),key);download('life-tracker-encrypted-backup-'+today()+'.ltbackup',JSON.stringify({format:'LifeTrackerEncryptedBackup',v:1,salt:b64(salt),iv:payload.iv,ciphertext:payload.data,iterations:PBKDF2_ITERATIONS}),'application/octet-stream');alert('Encrypted Backup তৈরি হয়েছে। পাসওয়ার্ড আলাদা নিরাপদ স্থানে রাখুন।')}catch(e){alert('Backup তৈরি করা যায়নি।')}}
 document.getElementById('exportJson').onclick=exportJSON;document.getElementById('backupBtn').onclick=exportJSON;document.getElementById('settingsBackup').onclick=exportJSON;
-document.getElementById('restoreFile').onchange=async e=>{let f=e.target.files[0];if(!f)return;try{let x=JSON.parse(await f.text());if(!confirm('বর্তমান ডেটার জায়গায় ব্যাকআপের ডেটা বসবে। চালিয়ে যাবেন?'))return;db={...fresh(),...x};save();setDefaults();alert('ব্যাকআপ রিস্টোর হয়েছে')}catch(err){alert('ফাইলটি সঠিক Life Tracker ব্যাকআপ নয়')}e.target.value=''};
+document.getElementById('restoreFile').onchange=async e=>{let f=e.target.files[0];if(!f)return;try{const vault=JSON.parse(await f.text());if(vault.format!=='LifeTrackerEncryptedBackup')throw Error('bad backup');const password=prompt('এই Backup-এর পাসওয়ার্ড লিখুন।');if(!password)return;const key=await deriveKey(password,unb64(vault.salt));const plain=await decryptText({iv:vault.iv,data:vault.ciphertext},key);const x=JSON.parse(plain);if(!confirm('বর্তমান ডেটার জায়গায় Backup-এর ডেটা বসবে। চালিয়ে যাবেন?'))return;db={...fresh(),...x};await save();setDefaults();alert('Encrypted Backup Restore হয়েছে')}catch(err){alert('Backup পাসওয়ার্ড ভুল, অথবা ফাইলটি সঠিক নয়।')}e.target.value=''};
 document.getElementById('exportCsv').onclick=()=>{let rows=[['Date','Type','Category','Amount_BDT','Description'],...db.money.map(x=>[x.date,x.type,x.cat,x.amount,x.desc||''])];let csv=rows.map(r=>r.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\n');download('life-tracker-finance-'+today()+'.csv','\ufeff'+csv,'text/csv;charset=utf-8')};
-document.getElementById('clearData').onclick=()=>{if(confirm('এই অ্যাপের সব ডেটা স্থায়ীভাবে মুছে যাবে। আগে ব্যাকআপ নিয়েছেন?')&&confirm('নিশ্চিতভাবে মুছবেন?')){localStorage.removeItem(KEY);db=fresh();setDefaults();save()}};
+document.getElementById('clearData').onclick=()=>{if(confirm('এই অ্যাপের সব এনক্রিপ্টেড ডেটা ও PIN স্থায়ীভাবে মুছে যাবে। আগে Encrypted Backup নিয়েছেন?')&&confirm('নিশ্চিতভাবে মুছবেন?')){localStorage.removeItem(KEY);location.reload()}};
 async function enableNotify(){if(!('Notification'in window)){alert('এই ব্রাউজারে Notification সমর্থিত নয়');return}let p=await Notification.requestPermission();alert(p==='granted'?'Notification অনুমতি চালু হয়েছে':'অনুমতি দেওয়া হয়নি')}
 document.getElementById('notifyBtn').onclick=enableNotify;document.getElementById('requestNotify').onclick=enableNotify;
 function reminderCheck(){if(!('Notification'in window)||Notification.permission!=='granted')return;let now=new Date(),hh=now.getHours(),mm=now.getMinutes();if(mm===0&&hh===7)new Notification('Life Tracker',{body:'আজকের অনার্স পড়ার সেশন শুরু করুন'});if(mm===0&&hh===19)new Notification('Life Tracker',{body:'আজকের ইংরেজি অনুশীলনটি করুন'})}
-setDefaults();render();setInterval(reminderCheck,60000);
+
+// Appearance preferences: saved inside the encrypted database.
+const coreTranslations={
+ '🏠 হোম':'🏠 Home','☑️ দৈনিক':'☑️ Daily','📚 পড়াশোনা':'📚 Study','🕌 নামাজ':'🕌 Prayer','💚 স্বাস্থ্য':'💚 Health','💰 টাকা':'💰 Finance','🕒 শিফট':'🕒 Shift','🎯 লক্ষ্য':'🎯 Goals','🚀 দক্ষতা':'🚀 Skills','📊 রিপোর্ট':'📊 Reports','⚙️ সেটিংস':'⚙️ Settings',
+ 'আজকের দ্রুত কাজ':'Quick Actions','আজকের রুটিন':'Today’s Routine','আজকের নোট':'Today’s Note','এই সপ্তাহের ফোকাস':'Weekly Focus','Daily Tracker':'Daily Tracker','Study & English Tracker':'Study & English Tracker','Prayer Tracker':'Prayer Tracker','Health Tracker':'Health Tracker','Income & Expense Tracker':'Income & Expense Tracker','Shift Management':'Shift Management','Goals & Habits':'Goals & Habits','Career & Skill Tracker':'Career & Skills','Monthly & Yearly Reports':'Monthly & Yearly Reports','Settings & Data Safety':'Settings & Data Safety',
+ 'ব্যক্তিগত সেটিংস':'Personal Settings','রিমাইন্ডার':'Reminders','ব্যাকআপ ও রিস্টোর':'Backup & Restore','ডেটা মুছুন':'Delete Data','সেটিংস সংরক্ষণ':'Save Settings','ব্যাকআপ ডাউনলোড':'Download Backup','ব্যাকআপ রিস্টোর':'Restore Backup','এই অ্যাপের সব ডেটা মুছুন':'Delete All App Data'
+};
+function applyLanguage(lang){
+ document.documentElement.lang=lang==='en'?'en':'bn';
+ document.querySelectorAll('#tabs button').forEach(b=>{const k=b.textContent.trim();if(b.dataset.original===undefined)b.dataset.original=k;b.textContent=lang==='en'?(coreTranslations[b.dataset.original]||b.dataset.original):b.dataset.original});
+ document.querySelectorAll('.section-title').forEach(el=>{if(el.dataset.original===undefined)el.dataset.original=el.textContent.trim();el.textContent=lang==='en'?(coreTranslations[el.dataset.original]||el.dataset.original):el.dataset.original});
+ document.querySelectorAll('#page-settings .panel h3').forEach(el=>{if(el.dataset.original===undefined)el.dataset.original=el.textContent.trim();el.textContent=lang==='en'?(coreTranslations[el.dataset.original]||el.dataset.original):el.dataset.original});
+}
+function applyAppearance(){
+ const st=db?.settings||{};
+ const mode=st.theme||'light';
+ const theme=mode==='system'?(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'):mode;
+ document.body.dataset.theme=theme;
+ document.body.dataset.density=st.density||'comfortable';
+ document.documentElement.style.setProperty('--brand',st.accent||'#5b5ce2');
+ document.documentElement.style.setProperty('--font-scale',String(st.fontScale||1));
+ const tm=document.getElementById('themeMode'),lm=document.getElementById('languageMode'),dm=document.getElementById('densityMode'),fs=document.getElementById('fontScale');
+ if(tm)tm.value=mode;if(lm)lm.value=st.language||'bn';if(dm)dm.value=st.density||'comfortable';if(fs)fs.value=st.fontScale||1;
+ const fl=document.getElementById('fontScaleLabel');if(fl)fl.textContent=Math.round((st.fontScale||1)*100)+'%';
+ document.querySelectorAll('.swatch').forEach(b=>b.setAttribute('aria-pressed',b.dataset.accent===(st.accent||'#5b5ce2')?'true':'false'));
+ applyLanguage(st.language||'bn');
+}
+document.getElementById('saveAppearance').onclick=()=>{db.settings.theme=document.getElementById('themeMode').value;db.settings.language=document.getElementById('languageMode').value;db.settings.density=document.getElementById('densityMode').value;db.settings.fontScale=+document.getElementById('fontScale').value;save();applyAppearance();alert('Appearance settings saved.')};
+document.getElementById('resetAppearance').onclick=()=>{Object.assign(db.settings,{theme:'light',language:'bn',accent:'#5b5ce2',density:'comfortable',fontScale:1});save();applyAppearance()};
+document.querySelectorAll('.swatch').forEach(b=>b.onclick=()=>{db.settings.accent=b.dataset.accent;save();applyAppearance()});
+document.getElementById('fontScale').addEventListener('input',e=>{document.documentElement.style.setProperty('--font-scale',e.target.value);document.getElementById('fontScaleLabel').textContent=Math.round(+e.target.value*100)+'%'});
+const systemThemeQuery=matchMedia('(prefers-color-scheme: dark)');
+systemThemeQuery.addEventListener?.('change',()=>{if(db?.settings?.theme==='system')applyAppearance()});
+
+boot();setInterval(reminderCheck,60000);
 if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(()=>{}));
 </script>
 </body></html>
