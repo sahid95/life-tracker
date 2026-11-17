@@ -1,61 +1,27 @@
-# Life Tracker v2.1 Secure
+# Life Tracker v2.3 Secure Premium
 
-মোবাইল-ফার্স্ট ব্যক্তিগত জীবন ব্যবস্থাপনা অ্যাপ।
+## Mobile deployment
+Upload the contents of this folder to the repository root: `index.html`, `manifest.json`, `service-worker.js`, `icons/`, and `README.md`.
 
-## ফিচার
-- Daily tasks & habits
-- Honours, English and skill study sessions
-- Five daily prayer checkboxes
-- Sleep, water, exercise and mood log
-- BDT income/expense tracker and budget
-- 6 day day-shift + 6 day night-shift cycle
-- Goals, career checklist and monthly report
-- Encrypted backup/restore and finance CSV export
-- PWA install + offline app shell
+## First use and PIN
+- On first open, create a new 6-digit PIN and enter it again to confirm.
+- Later opens require the same PIN to decrypt the local data.
+- If an older unencrypted app data object exists under the app storage key, the first PIN setup encrypts that data.
+- If encrypted data already exists, the app asks for the existing PIN. Do not clear browser storage or uninstall/clear app data before making an encrypted backup.
+- There is no PIN reset or recovery. Losing the PIN can make the local encrypted data unrecoverable.
 
-## GitHub Pages-এ প্রকাশ
-1. আগে পুরোনো repository-র একটি backup নিন।
-2. এই ZIP extract করুন।
-3. GitHub repository-র root-এ `index.html`, `manifest.json`, `service-worker.js`, `icons/` upload করুন।
-4. Settings > Pages-এ `main` branch এবং `/ (root)` নির্বাচন করুন।
-5. প্রকাশিত URL Chrome-এ খুলে Add to Home Screen করুন।
+## Features
+- Existing Life Tracker modules and local encrypted data store.
+- AES-GCM 256-bit data encryption; PBKDF2-SHA-256 PIN-derived key.
+- Separate password-protected encrypted backup and restore.
+- Day / Night / System theme, Bengali / English core navigation, accent color, font scale, and compact layout controls.
+- Browser-only local storage; no cloud sync.
+- Camera, microphone, and geolocation permissions are disabled by Permissions Policy.
 
-## গুরুত্বপূর্ণ
-- v2 ডেটা `life_tracker_v2_data` নামে আলাদা browser storage-এ রাখে; আগের app-এর localStorage key মুছে না।
-- ডেটা এই ফোন/ব্রাউজারেই থাকে; স্বয়ংক্রিয় cloud sync নেই।
-- নিয়মিত Settings থেকে Encrypted Backup নিন; Backup password ভুলবেন না।
-- Notification অনুমতি দিলে অ্যাপ খোলা থাকা অবস্থায় নির্দিষ্ট reminder check করতে পারে। অ্যাপ বন্ধ থাকলে নির্ভরযোগ্য background push notification এই static version-এ নেই।
-- শিফট ক্যালেন্ডারের প্রথম দিনের তারিখ আপনার প্রকৃত roster অনুযায়ী সেট করুন।
-- Prayer tracker কেবল সম্পন্ন/অসম্পন্ন চিহ্নিত করে; নামাজের ওয়াক্তের সময় গণনা করে না।
+## Privacy notes
+The app does not need camera, microphone, contacts, or location access. The browser still provides the selected backup file only when the user manually chooses it. GitHub Pages serves the app code publicly if Pages is enabled; repository visibility and website visibility are separate.
 
-
-## Privacy & Security (v2.1 Secure)
-- App access is protected by a 6-digit PIN.
-- App data is encrypted in browser storage using AES-GCM 256-bit encryption.
-- PIN-derived encryption key uses PBKDF2-SHA-256 with a random salt and 310,000 iterations.
-- Full backups are separately encrypted; use a strong backup password of at least 10 characters.
-- Keep the backup password safe. There is no password reset or recovery service.
-- Finance CSV exports are plain text and are NOT encrypted. Protect or delete them after use.
-- Data remains on this browser/device unless you manually export a backup. Clearing browser data can erase the vault.
-- This is client-side protection, not protection against a compromised/unlocked phone, malicious browser extensions, or someone who knows your PIN/password.
-- The old plain JSON backup format is not accepted by the encrypted restore feature.
-
-
-## Privacy protections
-- The app does not request camera, microphone, geolocation, contacts, or Bluetooth permissions.
-- The browser Permissions-Policy explicitly disables camera, microphone, geolocation, USB, Bluetooth, MIDI, and payment APIs.
-- The only file picker is the user-initiated JSON backup restore control; it reads only the file the user selects.
-- No analytics, advertising, or third-party tracking code is included.
-- The service worker handles same-origin requests only and does not proxy/cache third-party requests.
-- Personal tracker data is stored in this browser's local storage as encrypted data.
-
-These protections reduce access but are not a guarantee against a compromised phone/browser, malicious browser extensions, or future changes to the published source.
-
-
-## v2.2 Premium UI
-- Day / Night / System theme
-- বাংলা / English core navigation language preference
-- Accent color, compact/comfortable density, adjustable font size
-- Preferences are stored in the encrypted local app database
-
-Note: English mode translates core navigation and selected headings; user-entered content and every form label may remain Bengali in this release.
+## Limitations
+- English translation covers the core navigation and selected headings, not every field or user-entered value.
+- Notifications are limited by browser support and page/background behavior.
+- This package has been syntax-checked but not fully tested on every Android browser. Keep a backup before replacing an existing deployment.
