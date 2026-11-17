@@ -25,3 +25,13 @@ The app does not need camera, microphone, contacts, or location access. The brow
 - English translation covers the core navigation and selected headings, not every field or user-entered value.
 - Notifications are limited by browser support and page/background behavior.
 - This package has been syntax-checked but not fully tested on every Android browser. Keep a backup before replacing an existing deployment.
+
+
+## v2.4 Ultimate Premium
+- Change PIN panel: verifies the current PIN and re-encrypts the existing database using a new salt and key.
+- Glassmorphism styling, responsive dashboard polish, and reduced-motion support.
+- Animated report charts: six-month income/expense bars and study-hours trend.
+- Expanded English UI dictionary for common navigation, forms, reports, and controls.
+- New service-worker cache name to refresh deployed assets.
+
+Important: keep an encrypted backup before updating. English localization covers the app's common built-in interface strings; user-entered content remains unchanged. Verify the app on the target phone before relying on it.
