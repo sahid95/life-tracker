@@ -1,29 +1,31 @@
-# Life Tracker v2.0
+# Life Tracker v3.0 — Ultimate Premium
 
-মোবাইল-ফার্স্ট ব্যক্তিগত জীবন ব্যবস্থাপনা অ্যাপ।
+A mobile-first, local-first personal productivity tracker.
 
-## ফিচার
-- Daily tasks & habits
-- Honours, English and skill study sessions
-- Five daily prayer checkboxes
-- Sleep, water, exercise and mood log
-- BDT income/expense tracker and budget
-- 6 day day-shift + 6 day night-shift cycle
-- Goals, career checklist and monthly report
-- JSON backup/restore and finance CSV export
-- PWA install + offline app shell
+## Included
+- Premium glassmorphism dashboard with responsive layout and subtle animations
+- Full Bengali / English UI toggle
+- Day / Night theme
+- Daily rotating motivational quote
+- Task list and daily habit tracker
+- Income and expense tracker (BDT)
+- Study/focus minutes
+- Weekly progress charts and completion analysis
+- JSON backup export and restore
+- No PIN, password, account, or unlock screen
 
-## GitHub Pages-এ প্রকাশ
-1. আগে পুরোনো repository-র একটি backup নিন।
-2. এই ZIP extract করুন।
-3. GitHub repository-র root-এ `index.html`, `manifest.json`, `service-worker.js`, `icons/` upload করুন।
-4. Settings > Pages-এ `main` branch এবং `/ (root)` নির্বাচন করুন।
-5. প্রকাশিত URL Chrome-এ খুলে Add to Home Screen করুন।
+## Install / publish with GitHub Pages
+1. Extract this ZIP.
+2. Upload the **contents** of this folder to the root of your `life-tracker` repository.
+3. Keep the folder paths: `css/style.css`, `js/app.js`, `icons/icon.svg`.
+4. Commit changes. In GitHub, enable Pages from the `main` branch and `/ (root)` if not already enabled.
+5. Open your Pages URL. If an older version appears, refresh the page or clear the site's cached data.
 
-## গুরুত্বপূর্ণ
-- v2 ডেটা `life_tracker_v2_data` নামে আলাদা browser storage-এ রাখে; আগের app-এর localStorage key মুছে না।
-- ডেটা এই ফোন/ব্রাউজারেই থাকে; স্বয়ংক্রিয় cloud sync নেই।
-- নিয়মিত Settings থেকে JSON backup নিন।
-- Notification অনুমতি দিলে অ্যাপ খোলা থাকা অবস্থায় নির্দিষ্ট reminder check করতে পারে। অ্যাপ বন্ধ থাকলে নির্ভরযোগ্য background push notification এই static version-এ নেই।
-- শিফট ক্যালেন্ডারের প্রথম দিনের তারিখ আপনার প্রকৃত roster অনুযায়ী সেট করুন।
-- Prayer tracker কেবল সম্পন্ন/অসম্পন্ন চিহ্নিত করে; নামাজের ওয়াক্তের সময় গণনা করে না।
+## Data and privacy
+App data is stored in the browser's localStorage on the current device and browser. It is not synced to another device. Clearing browser site data can erase it. Use Settings → Export regularly. Import accepts this app's JSON backup format. No camera, gallery, contacts, microphone, or location permissions are requested.
+
+## Notes
+- This is a fresh v3 build; it does not import data from older versions automatically.
+- Charts are based on task completion records in the app.
+- Study time is manually entered by the user.
+- Google Fonts may be requested for typography when internet is available; the app otherwise falls back to system fonts.
