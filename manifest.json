@@ -1,1 +1,18 @@
-{"name":"Life Tracker Ultimate Premium","short_name":"Life Tracker","start_url":"./index.html","display":"standalone","background_color":"#0b1024","theme_color":"#101536","description":"Build Better Habits Every Day","icons":[{"src":"icons/icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]}
+{
+  "name": "Life Tracker • Ultimate Premium",
+  "short_name": "Life Tracker",
+  "description": "Study, habits, prayer, health, finance and shift tracking",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f4f6ff",
+  "theme_color": "#5148cc",
+  "icons": [
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
