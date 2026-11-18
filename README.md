@@ -1,37 +1,31 @@
-# Life Tracker v2.3 Secure Premium
+# Life Tracker v3.0 — Ultimate Premium
 
-## Mobile deployment
-Upload the contents of this folder to the repository root: `index.html`, `manifest.json`, `service-worker.js`, `icons/`, and `README.md`.
+A mobile-first, local-first personal productivity tracker.
 
-## First use and PIN
-- On first open, create a new 6-digit PIN and enter it again to confirm.
-- Later opens require the same PIN to decrypt the local data.
-- If an older unencrypted app data object exists under the app storage key, the first PIN setup encrypts that data.
-- If encrypted data already exists, the app asks for the existing PIN. Do not clear browser storage or uninstall/clear app data before making an encrypted backup.
-- There is no PIN reset or recovery. Losing the PIN can make the local encrypted data unrecoverable.
+## Included
+- Premium glassmorphism dashboard with responsive layout and subtle animations
+- Full Bengali / English UI toggle
+- Day / Night theme
+- Daily rotating motivational quote
+- Task list and daily habit tracker
+- Income and expense tracker (BDT)
+- Study/focus minutes
+- Weekly progress charts and completion analysis
+- JSON backup export and restore
+- No PIN, password, account, or unlock screen
 
-## Features
-- Existing Life Tracker modules and local encrypted data store.
-- AES-GCM 256-bit data encryption; PBKDF2-SHA-256 PIN-derived key.
-- Separate password-protected encrypted backup and restore.
-- Day / Night / System theme, Bengali / English core navigation, accent color, font scale, and compact layout controls.
-- Browser-only local storage; no cloud sync.
-- Camera, microphone, and geolocation permissions are disabled by Permissions Policy.
+## Install / publish with GitHub Pages
+1. Extract this ZIP.
+2. Upload the **contents** of this folder to the root of your `life-tracker` repository.
+3. Keep the folder paths: `css/style.css`, `js/app.js`, `icons/icon.svg`.
+4. Commit changes. In GitHub, enable Pages from the `main` branch and `/ (root)` if not already enabled.
+5. Open your Pages URL. If an older version appears, refresh the page or clear the site's cached data.
 
-## Privacy notes
-The app does not need camera, microphone, contacts, or location access. The browser still provides the selected backup file only when the user manually chooses it. GitHub Pages serves the app code publicly if Pages is enabled; repository visibility and website visibility are separate.
+## Data and privacy
+App data is stored in the browser's localStorage on the current device and browser. It is not synced to another device. Clearing browser site data can erase it. Use Settings → Export regularly. Import accepts this app's JSON backup format. No camera, gallery, contacts, microphone, or location permissions are requested.
 
-## Limitations
-- English translation covers the core navigation and selected headings, not every field or user-entered value.
-- Notifications are limited by browser support and page/background behavior.
-- This package has been syntax-checked but not fully tested on every Android browser. Keep a backup before replacing an existing deployment.
-
-
-## v2.4 Ultimate Premium
-- Change PIN panel: verifies the current PIN and re-encrypts the existing database using a new salt and key.
-- Glassmorphism styling, responsive dashboard polish, and reduced-motion support.
-- Animated report charts: six-month income/expense bars and study-hours trend.
-- Expanded English UI dictionary for common navigation, forms, reports, and controls.
-- New service-worker cache name to refresh deployed assets.
-
-Important: keep an encrypted backup before updating. English localization covers the app's common built-in interface strings; user-entered content remains unchanged. Verify the app on the target phone before relying on it.
+## Notes
+- This is a fresh v3 build; it does not import data from older versions automatically.
+- Charts are based on task completion records in the app.
+- Study time is manually entered by the user.
+- Google Fonts may be requested for typography when internet is available; the app otherwise falls back to system fonts.
